@@ -1,9 +1,10 @@
 
 PImage board;
-board = loadImage("./images/public class game");
 
 void setup(){
-  size(1000,1000);
+  size(800,800);  
+  board = loadImage("./images/monopolyBoard.jpg");
+  board.resize(800,800);
   background(board);
 }
 
