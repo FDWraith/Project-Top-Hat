@@ -1,0 +1,4 @@
+//This file's purpose is to keep track of all the classes and etc. that are in the directory. Changes will be made whenever new classes are added.
+
+
+Game.pde : Processing program that will display the monopoly board (and other things). 
