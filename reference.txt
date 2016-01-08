@@ -1,4 +1,6 @@
 //This file's purpose is to keep track of all the classes and etc. that are in the directory. Changes will be made whenever new classes are added.
 
 
-Game.pde : Processing program that will display the monopoly board (and other things). 
+Game.pde : Processing program that will display the monopoly board (and other things).
+Player.java : Class with all the properties and behaviors of Players.
+images dir : directory to store any and all images we may be using. (until we need animations, this folder will be relatively sparse).
