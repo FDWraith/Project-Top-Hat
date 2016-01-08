@@ -1,4 +1,3 @@
-
 PImage board;
 
 void setup(){
@@ -6,11 +5,13 @@ void setup(){
   board = loadImage("./images/monopolyBoard.jpg");
   board.resize(800,800);
   background(board);
-}
-
+  javax.swing.SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        PlayerSet.createGUI();
+      }
+    });
+  
 void draw(){
     
 }
 
-  
-  

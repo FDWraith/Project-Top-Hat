@@ -1,3 +1,4 @@
+import java.util.*;
 public class Player{
     private int money;
     private ArrayList<Integer> properties;//int array because properties will be associated with a number. 
@@ -9,7 +10,7 @@ public class Player{
      */
     public Player(){
 	money = 1500;
-	properties = new ArrayList<Integer>()
+	properties = new ArrayList<Integer>();
     }
 
     //Accessor methods
