@@ -4,19 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class PlayerSet extends javax.swing.Jframe{
+public class PlayerSet extends JFrame{
+
+    public int NumPlayer;
     
-    public static void createGUI(){
-	Jframe frame = new JFrame("Pick the number of players");
-	Jframe.setDefaultLookAndFEelDecorated(True);
+    public PlayerSet(){
+	String [] options = {"2 Players","3 Players", "4 players"};
 
-	JFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-	JButton button = new JButton("Click");
-	frame.getContentPane().add(button);
-
-	frame.pack();
-	frame.setVisible(true);
+	
+	NumPlayer = JOptionPane.showOptionDialog(null,"Select the Number of Players","Players Selection",0,JOptionPane.QUESTION_MESSAGE,null,options,0)+2;
     }
-    
 }
