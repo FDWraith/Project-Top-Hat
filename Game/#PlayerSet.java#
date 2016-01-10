@@ -7,7 +7,6 @@ import java.awt.event.*;
 public class PlayerSet extends JFrame{
 
     public int NumPlayer;
-    private static String [] AvailableTokens = {};
     
     public PlayerSet(){
 	String [] options = {"2 Players","3 Players", "4 players"};
