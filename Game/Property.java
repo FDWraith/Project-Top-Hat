@@ -160,6 +160,29 @@ public class Property extends Slot{
 	return sum;
     }
 
+    /**Mortgages the property by selling all houses on the property and setting the rentPrice to zero. Ownership is kept, however. 
+     *@return any earnings that come from selling houses is returned as an int.
+     */
+    public int mortgageProperty(){
+	int sum = 0;
+	while(houseCount > 0){
+	    sum += sellHouse();
+	}
+	rentPrice = 0;
+	return sum;
+    }
+
+    /**If a player wants to get rid of the mortgage, he/she has to pay the mortgage value plus 10% interest. 
+     *@return int representing the costs accumulated from the mortgage.
+     */
+    public int endMortgage(){
+	int sum = 0;
+	sum += mortgageValue;
+	sum += mortgageValue / 10;
+	return sum;
+    }
+    
+
     //Mandatory method.
     
     /**This is what happens when you land on the property. 
