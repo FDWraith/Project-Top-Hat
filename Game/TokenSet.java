@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class TokenSet extends JFrame implements ActionListener{
 
-    
+    public boolean waitnext = true;
     private JPanel p = new JPanel();
     JComboBox options = new JComboBox(Game.AvailableTokens.toArray());
     private JButton b = new JButton("Confirm Token");
@@ -40,6 +40,7 @@ public class TokenSet extends JFrame implements ActionListener{
 	    String save = (options.getSelectedItem()).toString();
 	    Game.AvailableTokens.remove(save);
 	    Token = save;
+	    waitnext = false;
 	    dispose();
 	}
     }

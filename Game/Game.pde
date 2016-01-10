@@ -17,6 +17,13 @@ void setup(){
   for(int i = 0; i < PlayerTokens.length ; i++){
     TokenSet x = new TokenSet(i+1);
     PlayerTokens[i] = x.getToken();
+    while(x.waitnext){
+      try{
+        Thread.sleep(1000);
+      } catch(InterruptedException ex){
+        Thread.currentThread().interrupt();
+      }
+    }
   }
   
 }
@@ -24,4 +31,3 @@ void setup(){
 void draw(){
     
 }
-
