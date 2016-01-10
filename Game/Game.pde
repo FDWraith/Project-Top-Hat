@@ -13,7 +13,12 @@ void setup(){
   PlayerSet playercalc = new PlayerSet();
   int numPlayer = playercalc.NumPlayer;
   print(numPlayer);
-  TokenSet test = new TokenSet(numPlayer);
+  String [] PlayerTokens = new String[numPlayer];
+  for(int i = 0; i < PlayerTokens.length ; i++){
+    TokenSet x = new TokenSet(i+1);
+    PlayerTokens[i] = x.getToken();
+  }
+  
 }
   
 void draw(){
