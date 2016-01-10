@@ -1,7 +1,7 @@
 public class Property extends Slot{
     private int buyPrice, rentPrice, housePrice, hotelPrice ,mortgageValue, houseCount;
     private String colorGroup;
-    private boolean owned;
+    private boolean owned,mortgaged;
     private int[]housePrices;
     
     //Constructors
@@ -25,6 +25,7 @@ public class Property extends Slot{
 	houseCount = 0;
 	colorGroup = colorG;
 	owned = false;
+	mortgaged = false;
     }
 
     //Accessors 
@@ -57,11 +58,11 @@ public class Property extends Slot{
 	return hotelPrice;
     }
     
-    /**Use this to get the mortgage value of this property.
-     *@return the mortgage value.
+    /**Use this to get the mortgaged status of the property
+     *@return a boolean 
      */
-    public int getMortgage(){
-	return mortgageValue;
+    public boolean getMortgage(){
+	return mortgaged;
     }
 
     /**Use this to figure out which colorGroup that this property belongs to.
@@ -119,6 +120,14 @@ public class Property extends Slot{
 	}
     }
 
+    /**A player may choose to buy this Property, for a cost, of course.
+     *@return int amount of money it costed to buy this house.
+     */
+    public int buyProperty(){
+	owned = true;
+	return buyPrice;
+    }
+
     /**If this property has no houses and a player has a monopoly of a colorGroup that matches this one, then the rentPrice is doubled.
      *@param String of the colorGroup.
      */
@@ -130,11 +139,12 @@ public class Property extends Slot{
 	}
     }
 
-    /**Use this when the property has to be reset.
+    /**Use this when the property has to be reset (different from being sold).
      */
     public void reset(){
 	rentPrice = housePrices[0];
 	owned = false;
+	mortgaged = false;
 	houseCount = 0;
     }
 
@@ -169,6 +179,7 @@ public class Property extends Slot{
 	    sum += sellHouse();
 	}
 	rentPrice = 0;
+	mortgaged = true;
 	return sum;
     }
 
@@ -179,13 +190,15 @@ public class Property extends Slot{
 	int sum = 0;
 	sum += mortgageValue;
 	sum += mortgageValue / 10;
+	mortgaged = false;
 	return sum;
     }
-    
 
     //Mandatory method.
     
     /**This is what happens when you land on the property. 
+     *@param Player who is the owner of this property.
+     *@param Player who lands on this property.
      */
     public void doAction(){
     }
