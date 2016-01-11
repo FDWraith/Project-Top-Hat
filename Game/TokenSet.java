@@ -15,8 +15,8 @@ public class TokenSet extends JFrame implements ActionListener{
     public TokenSet(int player){
 	
 	
-	super("Select the token for Player" + (player + 1));
-	setSize(300,150);
+	super("Select the token for Player" + (player));
+	setSize(500,120);
 	setResizable(true);
 	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
