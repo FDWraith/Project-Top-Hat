@@ -1,6 +1,8 @@
 import java.util.*;
 public class Player{
     private int money;
+    private int location;
+    private String token;
     private ArrayList<Integer> properties;//int array because properties will be associated with a number. 
 
     //Constructors
@@ -8,8 +10,10 @@ public class Player{
     /**
      *Default constructor (only constructor). Initializes a player with starting money and intilizies the empty properties list. 
      */
-    public Player(){
+    public Player(String token){
 	money = 1500;
+	location = 0;
+	this.token = token;
 	properties = new ArrayList<Integer>();
     }
 

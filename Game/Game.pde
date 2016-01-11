@@ -21,6 +21,7 @@ void setup(){
   numPlayer = playercalc.NumPlayer;
   print(numPlayer);
   PlayerTokens = new String[numPlayer];
+  
   for(int i = 0; i < PlayerTokens.length ; i++){
     TokenSet x = new TokenSet(i+1);
     PlayerTokens[i] = x.getToken();
@@ -32,14 +33,15 @@ void setup(){
       }
     }
   }
-  
-  //Make the Tokens appear.
-  for(int i =0; i<PlayerTokens.length;i++){
-       
+
+  //Create the players instances, since the tokens are a player property. 
+  for(int i = 0; i < numPlayer; i++){
+    
   }
+  
  
   
-  //Construct the Slot array
+  //Construct the Slot array, your job kevin, GO is 0 on the slot array
   
   
   
