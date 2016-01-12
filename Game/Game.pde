@@ -31,7 +31,6 @@ void setup(){
   
   for(int i = 0; i < PlayerList.length ; i++){
     TokenSet x = new TokenSet(i+1);
-    PlayerList[i] = new Player(TokenList[i]);
     print(TokenList[i]);
     while(x.waitnext){
       try{
@@ -40,7 +39,9 @@ void setup(){
         Thread.currentThread().interrupt();
       }
     }
+
   }
+  
   
   //Setup tokens for the players;
   PlayerTokens = new ArrayList<PImage>();//store the actual images themselves. Players have the string.
