@@ -64,10 +64,10 @@ void setup(){
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
 int convertLocationToXCor(int locat){
-   return 300; 
+   return locations[locat][0];
 }
 int convertLocationToYCor(int locat){
-   return 300; 
+   return locations[locat][1]; 
 }
   
   
