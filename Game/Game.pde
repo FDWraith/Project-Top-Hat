@@ -7,13 +7,13 @@ public static  ArrayList<String> AvailableTokens = new ArrayList<String>(Arrays.
 private static int numPlayer;
 
 //Game variables
-private final static Slot[] SlotsList;
+private static Slot[] SlotsList;
 private static Player[] PlayerList;
 private static ArrayList<PImage> PlayerTokens;
 
 
 void setup(){
-  size(800,800);  
+  size(1000,800);  
   board = loadImage("./images/monopolyBoard.jpg");
   board.resize(800,800);
   background(board);
@@ -23,7 +23,7 @@ void setup(){
   print(numPlayer);
   PlayerList = new Player[numPlayer];
   
-  for(int i = 0; i < PlayerTokens.length ; i++){
+  for(int i = 0; i < PlayerList.length ; i++){
     TokenSet x = new TokenSet(i+1);
     PlayerList[i] = new Player(x.getToken());
     while(x.waitnext){
@@ -58,16 +58,21 @@ void setup(){
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
-
+int convertLocationToXCor(int locat){
+   return 300; 
+}
+int convertLocationToYCor(int locat){
+   return 300; 
+}
  
   
   
 void draw(){
     background(board);
-    for(int i =0;i < numPlayer; i++){
+    /*for(int i =0;i < numPlayer; i++){
        int locat = PlayerList[i].getLocation();
        PImage disp = PlayerTokens.get(i);
        image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat), 10, 10);
-    }
+    }*/
        
 }
