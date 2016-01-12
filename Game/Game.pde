@@ -5,6 +5,7 @@ PImage board,token1,token2,token3,token4;
 private final static String [] Tokens= {"barrow","boot","car","dog","hat","iron","ship","thimple"};
 public static  ArrayList<String> AvailableTokens = new ArrayList<String>(Arrays.asList(Tokens));
 private static int numPlayer;
+public static String [] TokenList;
 
 //Game variables
 private static Slot[] SlotsList;
@@ -24,13 +25,14 @@ void setup(){
 
   PlayerSet playercalc = new PlayerSet();
   numPlayer = playercalc.NumPlayer;
+  TokenList = new String[numPlayer];  
   print(numPlayer);
   PlayerList = new Player[numPlayer];
   
   for(int i = 0; i < PlayerList.length ; i++){
     TokenSet x = new TokenSet(i+1);
-    PlayerList[i] = new Player(x.getToken());
-    print(x.getToken());
+    PlayerList[i] = new Player(TokenList[i]);
+    print(TokenList[i]);
     while(x.waitnext){
       try{
         Thread.sleep(1000);
