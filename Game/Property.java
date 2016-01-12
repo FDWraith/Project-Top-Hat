@@ -1,12 +1,14 @@
 public class Property extends Slot{
-    private int buyPrice, rentPrice, housePrice, hotelPrice ,mortgageValue, houseCount;
+    private int location, buyPrice, rentPrice, housePrice, hotelPrice ,mortgageValue, houseCount;
     private String colorGroup;
     private boolean owned,mortgaged;
     private int[]housePrices;
+    private Player owner;
     
     //Constructors
     
     /**Use this to create a Property. There is no default constructor.
+     *@param int for Property ID/location of property.
      *@param price to buy unowned property.
      *@param price if you land on this property that is owned by someone else. 
      *@param price if you want to build a house
@@ -15,7 +17,8 @@ public class Property extends Slot{
      *@param the color group that this property belongs to.
      *@param int array of rentPrices depending on houseCount.
      */
-    public Property(int buyP, int rentP, int houseP, int hotelP, int mortgageV,String colorG,int[]housePs){
+    public Property(int ID,int buyP, int rentP, int houseP, int hotelP, int mortgageV,String colorG,int[]housePs){
+	location = ID;
 	buyPrice = buyP;
 	rentPrice = rentP;
 	housePrice = houseP;
@@ -25,6 +28,7 @@ public class Property extends Slot{
 	houseCount = 0;
 	colorGroup = colorG;
 	owned = false;
+	owner = null;
 	mortgaged = false;
     }
 
@@ -82,10 +86,11 @@ public class Property extends Slot{
     //Mutator
     
     /**Change the status of whether the property is owned or unowned 
-     *@param a boolean to dictate status. True for being under ownership.
+     *@param a Player who now owns the property.
      */
-    public void setOwned(boolean enter){
-	owned = enter;
+    public void setOwner(Player enter){
+	owned = true;
+	owner = enter;
     }
 
     //Methods
@@ -121,10 +126,12 @@ public class Property extends Slot{
     }
 
     /**A player may choose to buy this Property, for a cost, of course.
-     *@return int amount of money it costed to buy this house.
+     *@param the Player who chose to buy this property.
      */
-    public int buyProperty(){
+    public int buyProperty(Player name){
+	owner = name;
 	owned = true;
+	owner.addProperty(this.location);
 	return buyPrice;
     }
 
@@ -144,6 +151,7 @@ public class Property extends Slot{
     public void reset(){
 	rentPrice = housePrices[0];
 	owned = false;
+	owner = null;
 	mortgaged = false;
 	houseCount = 0;
     }
@@ -166,7 +174,9 @@ public class Property extends Slot{
 	while(houseCount > 0){
 	    sum += sellHouse();
 	}
+	owner.removeProperty(this.location);
 	owned = false;//This will have to be reset later for a separate owner
+	owner = null;
 	return sum;
     }
 
@@ -197,10 +207,13 @@ public class Property extends Slot{
     //Mandatory method.
     
     /**This is what happens when you land on the property. 
-     *@param Player who is the owner of this property.
      *@param Player who lands on this property.
      */
-    public void doAction(){
+    public void doAction(Player name){
+	if(owned && owner != null){
+	    owner.changeMoney(rentPrice);
+	    name.changeMoney(-1*rentPrice);
+	}
     }
 
 }
