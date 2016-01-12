@@ -10,7 +10,6 @@ public class TokenSet extends JFrame implements ActionListener{
     private JPanel p = new JPanel();
     JComboBox options = new JComboBox(Game.AvailableTokens.toArray());
     private JButton b = new JButton("Confirm Token");
-    private String Token;
     private int Saveplayer;
     
     public TokenSet(int player){
@@ -31,9 +30,6 @@ public class TokenSet extends JFrame implements ActionListener{
 	setVisible(true);
     }
 
-    public String getToken(){
-	return Token;
-    }
 
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
@@ -43,7 +39,6 @@ public class TokenSet extends JFrame implements ActionListener{
 	    Game.TokenList[Saveplayer - 1] = save;
 	    waitnext = false;
 	    dispose();
-	    System.out.println(Token);
 	}
     }
 }
