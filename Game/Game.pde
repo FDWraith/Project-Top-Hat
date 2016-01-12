@@ -26,12 +26,12 @@ void setup(){
   PlayerSet playercalc = new PlayerSet();
   numPlayer = playercalc.NumPlayer;
   TokenList = new String[numPlayer];  
-  print(numPlayer);
+  //print(numPlayer);
   PlayerList = new Player[numPlayer];
   
   for(int i = 0; i < PlayerList.length ; i++){
     TokenSet x = new TokenSet(i+1);
-    print(TokenList[i]);
+    //print(TokenList[i]);
     while(x.waitnext){
       try{
         Thread.sleep(1000);
@@ -39,7 +39,7 @@ void setup(){
         Thread.currentThread().interrupt();
       }
     }
-
+    PlayerList[i] = new Player(TokenList[i]);
   }
   
   
@@ -59,7 +59,9 @@ void setup(){
       token4 = loadImage("./images/tokens/monopoly_token_"+PlayerList[3].getToken()+".png");
       PlayerTokens.add(token4);
   }
-  
+  for(int i=0; i<PlayerTokens.size();i++){
+      PlayerTokens.get(i).resize(40,40); 
+  }
   
   //Construct the Slot array, your job kevin, GO is 0 on the slot array 
   
@@ -79,6 +81,7 @@ void draw(){
     for(int i =0;i < numPlayer; i++){
        int locat = PlayerList[i].getLocation();
        PImage disp = PlayerTokens.get(i);
+       imageMode(CENTER);
        image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
     }
        

@@ -142,7 +142,7 @@ public class Property extends Slot{
 	owner = name;
 	owned = true;
 	owner.addProperty(this.location);
-	owner.changeMoney(-1 * this.buyPrice());
+	owner.changeMoney(-1 * this.buyPrice);
     }
 
     /**If this property has no houses and a player has a monopoly of a colorGroup that matches this one, then the rentPrice is doubled.
@@ -177,7 +177,7 @@ public class Property extends Slot{
 
     /**Use this to sell the property. This will not only reset the property to it's original state, but also sell all houses on this property.Any houses will be sold for money, but property's price itself will not be factored in.
      */
-    public int sellProperty(){
+    public void sellProperty(){
 	while(houseCount > 0){
 	    sellHouse();
 	}
@@ -188,7 +188,7 @@ public class Property extends Slot{
 
     /**Mortgages the property by selling all houses on the property and setting the rentPrice to zero. Ownership is kept, however. 
      */
-    public int mortgageProperty(){
+    public void mortgageProperty(){
 	int sum = 0;
 	while(houseCount > 0){
 	    sellHouse();
