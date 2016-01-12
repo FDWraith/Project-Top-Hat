@@ -3,7 +3,7 @@ public class Player{
     private int money;
     private int location;
     private String token;
-    private ArrayList<Integer> properties;//int array because properties will be associated with a number. 
+    private ArrayList<Integer> properties;//int array because properties will be associated with a number.
 
     //Constructors
     
@@ -33,6 +33,20 @@ public class Player{
 	return properties;
     }
 
+    /**Use this to get the token of the player.
+     *@return a String with the token's name
+     */
+    public String getToken(){
+	return token;
+    }
+
+    /**Use this to get the ID number of the Slot that the Player is currently on.
+     *@return an int that represents the int.
+     */
+    public int getLocation(){
+	return location;
+    }
+    
     //Mutator methods
     
     /**Use this if you want to add or subtract some amount of money from this person's possession.
@@ -40,6 +54,13 @@ public class Player{
      */
     public void changeMoney(int income){
 	money = money + income;
+    }
+
+    /**Use this to change the location of the player
+     *@param the new location.
+     */
+    public void changeLocation(int newL){
+	location = newL;
     }
 
     /**Use this if you want to add a property to this player's ownership.
