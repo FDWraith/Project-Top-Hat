@@ -4,7 +4,7 @@ public class Property extends Slot{
     private boolean owned,mortgaged;
     private int[]housePrices;
     private Player owner;
-    
+
     //Constructors
     
     /**Use this to create a Property. There is no default constructor.
@@ -83,6 +83,14 @@ public class Property extends Slot{
 	return owned;
     }
     
+    /**Use this to determine the owner of this property, if there is one.
+     *@return Returns the Player that owns this property.
+     */
+    public Player getOwner(){
+	return owner;
+    }
+
+    
     //Mutator
     
     /**Change the status of whether the property is owned or unowned 
@@ -109,6 +117,7 @@ public class Property extends Slot{
 	    return;
 	}
 	else{
+	    owner.changeMoney(-1*housePrice);
 	    houseCount += 1;
 	    changeRentPrice(houseCount);
 	}
@@ -118,6 +127,7 @@ public class Property extends Slot{
      */
     public void buyHotel(){
 	if(houseCount == 4){
+	    owner.changeMoney(-1*housePrice);
 	    houseCount += 1;
 	    changeRentPrice(houseCount);
 	}else{
@@ -128,11 +138,11 @@ public class Property extends Slot{
     /**A player may choose to buy this Property, for a cost, of course.
      *@param the Player who chose to buy this property.
      */
-    public int buyProperty(Player name){
+    public void buyProperty(Player name){
 	owner = name;
 	owned = true;
 	owner.addProperty(this.location);
-	return buyPrice;
+	owner.changeMoney(-1 * this.buyPrice());
     }
 
     /**If this property has no houses and a player has a monopoly of a colorGroup that matches this one, then the rentPrice is doubled.
@@ -157,51 +167,44 @@ public class Property extends Slot{
     }
 
     /**Use this to sell a house. A house is sold at half it's bought price.
-     *@return int indicating the earnings that come from selling the house.
      */
-    public int sellHouse(){
+    public void sellHouse(){
 	houseCount -= 1;
 	changeRentPrice(houseCount);
 	//monopolizeProperty()  <-- This should be here, but I don't know how to determine if there is a monopoly...
-	return housePrice / 2;//int division is fine since houses cannot cost an odd number of dollars
+	owner.changeMoney( housePrice / 2);//int division is fine since houses cannot cost an odd number of dollars
     }
 
-    /**Use this to sell the property. This will not only reset the property to it's original state, but also sell all houses on this property.
-     *@return int indicating the earnings that come from selling this property (does not factor in property price);
+    /**Use this to sell the property. This will not only reset the property to it's original state, but also sell all houses on this property.Any houses will be sold for money, but property's price itself will not be factored in.
      */
     public int sellProperty(){
-	int sum = 0;
 	while(houseCount > 0){
-	    sum += sellHouse();
+	    sellHouse();
 	}
 	owner.removeProperty(this.location);
 	owned = false;//This will have to be reset later for a separate owner
 	owner = null;
-	return sum;
     }
 
     /**Mortgages the property by selling all houses on the property and setting the rentPrice to zero. Ownership is kept, however. 
-     *@return any earnings that come from selling houses is returned as an int.
      */
     public int mortgageProperty(){
 	int sum = 0;
 	while(houseCount > 0){
-	    sum += sellHouse();
+	    sellHouse();
 	}
 	rentPrice = 0;
 	mortgaged = true;
-	return sum;
     }
 
     /**If a player wants to get rid of the mortgage, he/she has to pay the mortgage value plus 10% interest. 
-     *@return int representing the costs accumulated from the mortgage.
      */
-    public int endMortgage(){
+    public void endMortgage(){
 	int sum = 0;
 	sum += mortgageValue;
 	sum += mortgageValue / 10;
 	mortgaged = false;
-	return sum;
+	owner.changeMoney(-1 * sum);
     }
 
     //Mandatory method.
