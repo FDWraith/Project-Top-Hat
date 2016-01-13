@@ -5,7 +5,7 @@ public class Community extends Slot{
     }
 
     //Mandatory Action
-    public void doAction(){
+    public void doAction(Player name){
 	//fill in this later
     }
    
