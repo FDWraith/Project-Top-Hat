@@ -63,7 +63,6 @@ void setup(){
   }
   
   //Construct the Slot array, your job kevin, GO is 0 on the slot array 
-  
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
@@ -122,4 +121,23 @@ void SetProperty(){
   SlotsList[18] = new Property(18);
   SlotsList[19] = new Property(19);
   SlotsList[20] = new Slot(20);
+  SlotsList[21] = new Property(21);
+  SlotsList[22] = new Chance(22);
+  SlotsList[23] = new Property(23);
+  SlotsList[24] = new Property(24);
+  SlotsList[25] = new Railroad(25);
+  SlotsList[26] = new Property(26);
+  SlotsList[27] = new Property(27);
+  SlotsList[28] = new Utility(28);
+  SlotsList[29] = new Property(29);
+  SlotsList[30] = new GoToJail(30);
+  SlotsList[31] = new Property(31);
+  SlotsList[32] = new Property(32);
+  SlotsList[33] = new Community(33);
+  SlotsList[34] = new Property(34);
+  SlotsList[35] = new Railroad(35);
+  SlotsList[36] = new Chance(36);
+  SlotsList[37] = new Property(37);
+  SlotsList[38] = new Tax(38);
+  SlotsList[39] = new Property(39);  
 }
