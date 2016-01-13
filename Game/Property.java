@@ -1,5 +1,5 @@
 public class Property extends Slot{
-    private int location, buyPrice, rentPrice, housePrice, hotelPrice ,mortgageValue, houseCount;
+    private int buyPrice, rentPrice, housePrice, hotelPrice ,mortgageValue, houseCount;
     private String colorGroup;
     private boolean owned,mortgaged;
     private int[]housePrices;
@@ -18,7 +18,7 @@ public class Property extends Slot{
      *@param int array of rentPrices depending on houseCount.
      */
     public Property(int ID,int buyP, int rentP, int houseP, int hotelP, int mortgageV,String colorG,int[]housePs){
-	location = ID;
+	setLocation(ID);
 	buyPrice = buyP;
 	rentPrice = rentP;
 	housePrice = houseP;
@@ -141,7 +141,7 @@ public class Property extends Slot{
     public void buyProperty(Player name){
 	owner = name;
 	owned = true;
-	owner.addProperty(this.location);
+	owner.addProperty(this.getLocation());
 	owner.changeMoney(-1 * this.buyPrice);
     }
 
@@ -181,7 +181,7 @@ public class Property extends Slot{
 	while(houseCount > 0){
 	    sellHouse();
 	}
-	owner.removeProperty(this.location);
+	owner.removeProperty(this.getLocation());
 	owned = false;//This will have to be reset later for a separate owner
 	owner = null;
     }
