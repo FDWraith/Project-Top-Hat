@@ -1,7 +1,7 @@
-public  class Slot {
+public class Slot {
     private int location;
-    public Slot(int location){
-	setLocation(location);
+    public Slot(int ID){
+	setLocation(ID);
     }
 
     public void setLocation(int nwLocation){
@@ -14,7 +14,8 @@ public  class Slot {
 	return location;
     }
 
+    //Mandatory Method
     public void doAction(Player name){
-	
+	//does nothing in default Slot
     }
 }
