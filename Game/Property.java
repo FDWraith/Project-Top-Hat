@@ -10,6 +10,7 @@ public class Property extends Slot{
     
     /**Use this to create a Property. There is no default constructor.
      *@param int for Property ID/location of property.
+     *@param string title for the name of the property.
      *@param price to buy unowned property.
      *@param price if you land on this property that is owned by someone else. 
      *@param price if you want to build a house
