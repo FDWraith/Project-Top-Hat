@@ -1,7 +1,7 @@
 public class Tax extends Slot{
 
     public Tax(int ID){
-	setLocation(ID);
+	super(ID);
     }
 
     //Mandatory method

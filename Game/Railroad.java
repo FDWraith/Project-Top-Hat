@@ -1,6 +1,6 @@
 public class Railroad extends Slot{
     public Railroad(int ID){
-	setLocation(ID);
+	super(ID);
     }
     
     public void doAction(Player name){

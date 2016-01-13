@@ -2,7 +2,7 @@ public class Utility extends Slot{
     
 
     public Utility(int ID){
-	setLocation(ID);
+	super(ID);
     }
 
     //Mandatory method
