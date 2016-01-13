@@ -1,4 +1,4 @@
-public abstract class Slot {
+public  class Slot {
     private int location;
 
     public void setLocation(int nwLocation){
@@ -11,5 +11,7 @@ public abstract class Slot {
 	return location;
     }
 
-    public abstract void doAction(Player name);
+    public void doAction(Player name){
+	
+    }
 }

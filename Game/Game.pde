@@ -8,7 +8,7 @@ private static int numPlayer;
 public static String [] TokenList;
 
 //Game variables
-private static Slot[] SlotsList;
+private static Slot[] SlotsList = new Slot[40];
 private static Player[] PlayerList;
 private static ArrayList<PImage> PlayerTokens;
 private static final int[][] locations = { {750,750} , {660,750} , {595,750}, {530,750}, {465,750}, {400,750}, {335,750}, {270,750}, {205,750}, {140,750}, 
@@ -84,4 +84,8 @@ void draw(){
        image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
     }
        
+}
+
+void SetProperty(){
+  //SlotsList[0] = 
 }
