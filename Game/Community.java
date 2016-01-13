@@ -1,7 +1,7 @@
 public class Community extends Slot{
     
     public Community(int ID){
-	setLocation(ID);
+	super(ID);
     }
 
     //Mandatory Action

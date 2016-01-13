@@ -1,4 +1,5 @@
 public class Property extends Slot{
+    private String name;
     private int buyPrice, rentPrice, housePrice, hotelPrice ,mortgageValue, houseCount;
     private String colorGroup;
     private boolean owned,mortgaged;
@@ -17,8 +18,9 @@ public class Property extends Slot{
      *@param the color group that this property belongs to.
      *@param int array of rentPrices depending on houseCount.
      */
-    public Property(int ID,int buyP, int rentP, int houseP, int hotelP, int mortgageV,String colorG,int[]housePs){
-	setLocation(ID);
+    public Property(int ID,String title,int buyP, int rentP, int houseP, int hotelP, int mortgageV,String colorG,int[]housePs){
+	super(ID);
+	name = title;
 	buyPrice = buyP;
 	rentPrice = rentP;
 	housePrice = houseP;

@@ -87,5 +87,9 @@ void draw(){
 }
 
 void SetProperty(){
-  //SlotsList[0] = 
+  SlotsList[0] = new Slot(0);
+  int [] MeditH = {10,30,90,60};  
+  SlotsList[1] = new Property(1,"Mediterranean Ave",60,2,50,50,30,"brown",MeditH);
+  int [] BaltiH = {20,60,180,320};
+  SlotsList[2] = new Property(2,"Baltic Ave",60,4,50,50,30,"brown",BaltiH);
 }
