@@ -96,9 +96,9 @@ void SetProperty(){
   int [] BaltiH = {4,20,60,180,320,450};
   SlotsList[3] = new Property(3,"Baltic Ave",60,4,50,50,30,"brown",BaltiH);
   
-  SlotsList[4] = new Tax(4);
+  SlotsList[4] = new Tax(4,"Income Tax",200);
   
-  SlotsList[5] = new Railroad(5,"Reading Railroad");
+  SlotsList[5] = new Railroad(5,"Reading Railroad",200);
   
   int [] OrientH = {6,30,90,270,400,550};
   SlotsList[6] = new Property(6,"Oriental Ave",100,6,50,50,50,"light blue",OrientH);
@@ -116,7 +116,7 @@ void SetProperty(){
   int [] StcH = {10,50,150,450,625,750};
   SlotsList[11] = new Property(11,"St. Charles Place",140,10,100,100,70,"pink",StcH);
   
-  SlotsList[12] = new Utility(12);
+  SlotsList[12] = new Utility(12,"Electric Company",150);
   
   int[] StAve = {10,50,150,450,625,750};
   SlotsList[13] = new Property(13,"States Avenue",140,10,100,100,70,"pink",StAve);
@@ -124,7 +124,7 @@ void SetProperty(){
   int[]VAAve = {12,60,180,500,700,900};
   SlotsList[14] = new Property(14,"Virgina Avenue",160,12,100,100,80,"pink",VAAve);
   
-  SlotsList[15] = new Railroad(15,"Pennsylvania Railroad");
+  SlotsList[15] = new Railroad(15,"Pennsylvania Railroad",200);
   
   int[]SJP = {14,70,200,550,750,950};
   SlotsList[16] = new Property(16,"St. James Place",180,14,100,100,90,"orange",SJP);
@@ -150,7 +150,7 @@ void SetProperty(){
   int[] IlAve = {20,100,300,750,925,1100};
   SlotsList[24] = new Property(24,"Illinois Avenue",240,20,150,150,120,"red",IlAve);
   
-  SlotsList[25] = new Railroad(25,"B. & O. Railroad");
+  SlotsList[25] = new Railroad(25,"B. & O. Railroad",200);
   
   int[] AtAve = {22,110,330,800,975,1150};
   SlotsList[26] = new Property(26,"Atlantic Avenue",260,22,150,150,130,"yellow",AtAve);
@@ -158,7 +158,7 @@ void SetProperty(){
   int[]VentAve = {22,110,330,800,975,1150};
   SlotsList[27] = new Property(27,"Ventnor Avenue",260,22,150,150,130,"yellow",VentAve);
  
-  SlotsList[28] = new Utility(28);
+  SlotsList[28] = new Utility(28,"Water Works",150);
   
   int[]MvG = {24,120,360,850,1025,1200};
   SlotsList[29] = new Property(29,"Marvin Gardens",280,24,150,150,140,"yellow",MvG);
@@ -176,14 +176,14 @@ void SetProperty(){
   int [] PAAve = {28,150,450,1000,1200,1400};
   SlotsList[34] = new Property(34,"Pennsylvania Avenue",320,28,200,200,160,"green",PAAve);
   
-  SlotsList[35] = new Railroad(35,"Short Line");
+  SlotsList[35] = new Railroad(35,"Short Line",200);
   
   SlotsList[36] = new Chance(36);
   
   int[] PkPl = {35,175,500,1100,1300,1500};
   SlotsList[37] = new Property(37,"Park Place",350,35,200,200,175,"blue",PkPl);
   
-  SlotsList[38] = new Tax(38);
+  SlotsList[38] = new Tax(38,"Luxury Tax",100);
   
   int[] BdWk = {50,200,600,1400,1700,2000};  
   SlotsList[39] = new Property(39,"Boardwalk",400,50,200,200,200,"blue",BdWk);  

@@ -1,10 +1,11 @@
 public class Railroad extends Slot{
     private String name;
-    public Railroad(int ID, String title){
-    //Constructor
-    public Railroad(int ID){
+    private int buyPrice;
+    
+    public Railroad(int ID, String title,int price){
 	super(ID);
 	name = title;
+	buyPrice = price;
     }
     
     public void doAction(Player name){

@@ -6,10 +6,8 @@ public class GoToJail extends Slot{
     
     //Mandatory method
     public void doAction(Player name){
-	Player.setLocation(10);
+	//Player.setLocation(10);
 	//Player.setJailed(3);
-    }
-]
-   
+    }   
     
 }
