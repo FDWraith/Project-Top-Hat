@@ -1,5 +1,7 @@
 import java.util.*;
 public class Player{
+    public static final String[] phases = {"waiting","moving","selection"};
+    private int currentphase;
     private int money;
     private int location;
     private String token;
@@ -11,6 +13,7 @@ public class Player{
      *Default constructor (only constructor). Initializes a player with starting money and intilizies the empty properties list. 
      */
     public Player(String token){
+	currentphase = 0;
 	money = 1500;
 	location = 0;
 	this.token = token;
