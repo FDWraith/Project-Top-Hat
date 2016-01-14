@@ -73,6 +73,24 @@ int convertLocationToYCor(int locat){
    return locations[locat][1]; 
 }
   
+void move(Player name,int newLocation){
+    int old = name.getLocation();
+    if(newLocation > old){
+       dist = newLocation - old; 
+    }else{
+       dist = (39 - old + 1) + newLocation; 
+    }
+    for(int i =0; i<dist;i++){
+       if(name.getLocation()=39){
+          name.changeMoney(200);
+          name.changeLocation(0);
+       }else{
+          name.changeLocation(name.getLocation()+1); 
+       }
+    }
+}
+  
+  
   
 void draw(){
     background(board);
