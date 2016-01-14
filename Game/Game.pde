@@ -8,6 +8,7 @@ private static int numPlayer;
 public static String [] TokenList;
 
 //Game variables
+private Random r = new Random();
 private static Slot[] SlotsList = new Slot[40];
 private static Player[] PlayerList;
 private static ArrayList<PImage> PlayerTokens;
@@ -73,21 +74,28 @@ int convertLocationToYCor(int locat){
    return locations[locat][1]; 
 }
   
-void move(Player name,int newLocation){
+void move(int PlayerID,int dist){
+    Player name = PlayerList[PlayerID];
     int old = name.getLocation();
-    if(newLocation > old){
-       dist = newLocation - old; 
-    }else{
-       dist = (39 - old + 1) + newLocation; 
-    }
-    for(int i =0; i<dist;i++){
-       if(name.getLocation()=39){
+    for(int i =0; i< dist;i++){
+       
+       if(name.getLocation()==39){
           name.changeMoney(200);
           name.changeLocation(0);
        }else{
           name.changeLocation(name.getLocation()+1); 
        }
+       
+       background(board);
+       for(int j =0;j < numPlayer; j++){
+           int locat = PlayerList[j].getLocation();
+           PImage disp = PlayerTokens.get(j);
+           imageMode(CENTER);
+           image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
+       }
+       
     }
+    //SlotsList[name.getLocation()].doAction(name);
 }
   
   
@@ -100,6 +108,13 @@ void draw(){
        imageMode(CENTER);
        image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
     }
+    move(0,r.nextInt(6));
+    try{
+        Thread.sleep(1000);
+      } catch(InterruptedException ex){
+        Thread.currentThread().interrupt();
+      }  
+    
        
 }
 
