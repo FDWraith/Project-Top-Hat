@@ -96,6 +96,9 @@ public class Player{
 	money = 0;
     }
     
+    public String toString(){
+	return token;
+    }
     
     
     

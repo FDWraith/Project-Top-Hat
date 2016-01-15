@@ -122,10 +122,33 @@ void draw(){
        TimeUnit.SECONDS.sleep(1);
     }catch(InterruptedException e){
        println("exception");
-    }
-    
-       
+    }      
 }
+
+boolean overRect(int x, int y, int width, int height)  {
+  if (mouseX >= x && mouseX <= x+width && 
+      mouseY >= y && mouseY <= y+height) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+boolean overRect(Button choice){
+  int x-cor = choice.getXCor();
+  int y-cor = choice.getYCor();
+  int w = choice.getWidth();
+  int h = choice.getHeight();
+  return overRect(x-cor,y-cor,w,h);
+}
+
+void mousePressed(){
+    
+}
+
+
+
+
 
 void SetProperty(){
   SlotsList[0] = new Slot(0);
