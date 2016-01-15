@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 PImage board,token1,token2,token3,token4;
 //pre-Board settings
@@ -9,7 +10,7 @@ public static String [] TokenList;
 
 //Game variables
 private Random r = new Random();
-private static Slot[] SlotsList = new Slot[40];
+public static Slot[] SlotsList = new Slot[40];
 private static Player[] PlayerList;
 private static ArrayList<PImage> PlayerTokens;
 private static final int[][] locations = { {750,750} , {660,750} , {595,750}, {530,750}, {465,750}, {400,750}, {335,750}, {270,750}, {205,750}, {140,750}, 
@@ -63,7 +64,8 @@ void setup(){
       PlayerTokens.get(i).resize(40,40); 
   }
   
-  //Construct the Slot array, your job kevin, GO is 0 on the slot array 
+  //Setup the Slot Array
+  SetProperty();
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
@@ -76,26 +78,33 @@ int convertLocationToYCor(int locat){
   
 void move(int PlayerID,int dist){
     Player name = PlayerList[PlayerID];
-    int old = name.getLocation();
+    println(dist);
     for(int i =0; i< dist;i++){
-       
        if(name.getLocation()==39){
           name.changeMoney(200);
           name.changeLocation(0);
        }else{
           name.changeLocation(name.getLocation()+1); 
        }
+       //animate movement (to be filled in later);
        
-       background(board);
+       /*background(board);
        for(int j =0;j < numPlayer; j++){
            int locat = PlayerList[j].getLocation();
            PImage disp = PlayerTokens.get(j);
            imageMode(CENTER);
            image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
        }
+       try{
+         TimeUnit.MILLISECONDS.sleep(100);
+       }catch(InterruptedException e){
+         println("exception");
+       }
        
+       //noLoop();
+       */
     }
-    //SlotsList[name.getLocation()].doAction(name);
+    SlotsList[name.getLocation()].doAction(name);
 }
   
   
@@ -108,12 +117,12 @@ void draw(){
        imageMode(CENTER);
        image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
     }
-    move(0,r.nextInt(6));
+    move(0,r.nextInt(7));
     try{
-        Thread.sleep(1000);
-      } catch(InterruptedException ex){
-        Thread.currentThread().interrupt();
-      }  
+       TimeUnit.SECONDS.sleep(1);
+    }catch(InterruptedException e){
+       println("exception");
+    }
     
        
 }
