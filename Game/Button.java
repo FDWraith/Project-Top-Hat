@@ -1,10 +1,12 @@
 public class Button{
     private int xcor,ycor,height,width;
-    public Button(int xcor, int ycor, int w, int h){
+    private String doSomething;
+    public Button(int xcor, int ycor, int w, int h,String action){
 	this.xcor = xcor;
 	this.ycor = ycor;
 	height = h;
 	width = w;
+	doSomething = action;
     }
 
     public int getXCor(){
@@ -18,5 +20,9 @@ public class Button{
     }
     public int getWidth(){
 	return width;
+    }
+
+    public void trigger(){
+	//whatever options the Button should do.
     }
 }

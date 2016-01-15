@@ -13,6 +13,7 @@ private Random r = new Random();
 public static Slot[] SlotsList = new Slot[40];
 private static Player[] PlayerList;
 private static ArrayList<PImage> PlayerTokens;
+private static ArrayList<Button> ButtonList;
 private static final int[][] locations = { {750,750} , {660,750} , {595,750}, {530,750}, {465,750}, {400,750}, {335,750}, {270,750}, {205,750}, {140,750}, 
                                            {50,750}, {50,660}, {50,595}, {50,530}, {50,465}, {50,400}, {50,335}, {50,270}, {50,205}, {50,140},
                                            {50,50}, {140,50}, {205,50}, {270,50}, {335,50}, {400,50}, {465,50}, {530,50}, {595,50}, {660,50},
@@ -143,11 +144,21 @@ boolean overRect(Button choice){
 }
 
 void mousePressed(){
-    
+   for(i=0;i<ButtonList.size();i++){
+      if overRect(ButtonList.get(i)){
+         ButtonList.get(i).trigger(); 
+      }
+   }
 }
 
 
 
+
+void SetButton(){
+   ButtonList = new ArrayList<Button>();
+   ButtonList.add(new Button(100,100,50,50,"doNothing"));
+   
+}
 
 
 void SetProperty(){
