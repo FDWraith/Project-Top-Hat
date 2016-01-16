@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class TokenSet extends JFrame implements ActionListener{
+public class TokenSet extends JFrame implements ActionListener, ItemListener{
 
     public boolean waitnext = true;
     private JPanel p = new JPanel();
@@ -12,6 +12,7 @@ public class TokenSet extends JFrame implements ActionListener{
     private JButton b = new JButton("Confirm Token");
     private String Token;
     private int Saveplayer;
+    private ImageIcon image;
     
     public TokenSet(int player){
 	
@@ -24,8 +25,11 @@ public class TokenSet extends JFrame implements ActionListener{
 	b.addActionListener(this);
 	b.setActionCommand("token");
 
+	image = new ImageIcon("images/tokens/monopoly_token_" + options.getSelectedITem().toString() +".png");
+	
 	p.add(options);
 	p.add(b);
+	p.add(image)
 	add(p);
 
 	setVisible(true);
@@ -45,5 +49,9 @@ public class TokenSet extends JFrame implements ActionListener{
 	    dispose();
 	    System.out.println(Token);
 	}
+    }
+
+    public void itemStateChanged(ItemEvent e){
+	
     }
 }

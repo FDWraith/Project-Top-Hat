@@ -80,6 +80,10 @@ public class Player{
 	properties.remove(ID);
     }
 
+    public void setPhase(int x){
+	currentphase = x;
+    }
+
     //Other methods
 
     /**Use this to check if player is bankrupt or not.

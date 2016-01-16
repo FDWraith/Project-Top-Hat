@@ -216,6 +216,7 @@ public class Property extends Slot{
      *@param Player who lands on this property.
      */
     public void doAction(Player name){
+	
 	if(owned && owner != null){
 	    owner.changeMoney(rentPrice);
 	    name.changeMoney(-1*rentPrice);
