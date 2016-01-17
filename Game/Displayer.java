@@ -37,7 +37,7 @@ public class Displayer extends JFrame implements ActionListener{
     public String[] getPropertyName(){
 	String [] save = x.getProperties().length();
 	for(int i = 0; i < x.getProperties().length(), i++){
-	    save[i] = Game.SlotsList[x.getProperties()];
+	    save[i] = Game.SlotsList[x.getProperties().get(i)].getName();
 	}
     }
 

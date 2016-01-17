@@ -35,7 +35,14 @@ public class Property extends Slot{
 	mortgaged = false;
     }
 
-    //Accessors 
+    //Accessors
+
+    /**Use this to get the name of the property
+     *@return name of the property;
+     */
+    public String getName(){
+	return name;
+    }
 
     /**Use this to get the price of the unowned property
      *@return price of property
