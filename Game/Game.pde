@@ -22,18 +22,24 @@ private static final int[][] locations = { {750,750} , {660,750} , {595,750}, {5
                                            {750,50}, {750,140}, {750,205}, {750,270}, {750,335}, {750,400}, {750,465}, {750,530}, {750,595}, {750,660} };
 
 void setup(){
+  //Set global variable wdr to be the path to the current sketch folder
   setpath();
+
+  //Create the Board
   size(800,800);  
   board = loadImage("./images/monopolyBoard.jpg");
   board.resize(800,800);
   background(board);
 
+  //Opens the GUI to set the number of players
   PlayerSet playercalc = new PlayerSet();
   numPlayer = playercalc.NumPlayer;
-  TokenList = new String[numPlayer];  
+  TokenList = new String[numPlayer];
+  
   //print(numPlayer);
   PlayerList = new Player[numPlayer];
-  
+
+  //Create the players and request the players to set the tokens
   for(int i = 0; i < PlayerList.length ; i++){
     TokenSet x = new TokenSet(i+1);
     //print(TokenList[i]);
