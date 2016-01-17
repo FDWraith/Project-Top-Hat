@@ -1,8 +1,11 @@
 import java.util.*;
+import java.io.*;
 import javax.swing.*;
+import javax.imageio.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
 
 public class TokenSet extends JFrame implements ActionListener, ItemListener{
 
@@ -12,7 +15,8 @@ public class TokenSet extends JFrame implements ActionListener, ItemListener{
     private JButton b = new JButton("Confirm Token");
     private String Token;
     private int Saveplayer;
-    private ImageIcon image;
+    private ImageIcon icon;
+    private JLabel tv; 
     
     public TokenSet(int player){
 	
@@ -25,11 +29,22 @@ public class TokenSet extends JFrame implements ActionListener, ItemListener{
 	b.addActionListener(this);
 	b.setActionCommand("token");
 
-	image = new ImageIcon("images/tokens/monopoly_token_" + options.getSelectedITem().toString() +".png");
 	
 	p.add(options);
 	p.add(b);
-	p.add(image)
+	options.addItemListener(this);		
+
+	icon = new ImageIcon(Game.wdr + "images/tokens/monopoly_token_"+ options.getSelectedItem().toString() + ".png");
+	Image img = icon.getImage();
+	Image newimg = img.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
+	ImageIcon newicon = new ImageIcon(newimg);
+
+	
+	tv = new JLabel();
+	tv.setIcon(newicon);
+	
+	p.add(tv);
+	
 	add(p);
 
 	setVisible(true);
@@ -52,6 +67,12 @@ public class TokenSet extends JFrame implements ActionListener, ItemListener{
     }
 
     public void itemStateChanged(ItemEvent e){
-	
+	if(e.getStateChange() == ItemEvent.SELECTED){
+	    icon = new ImageIcon(Game.wdr + "images/tokens/monopoly_token_"+ options.getSelectedItem().toString() + ".png");	    
+	    Image img = icon.getImage();
+	    Image newimg = img.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
+	    ImageIcon newicon = new ImageIcon(newimg);
+	    tv.setIcon(newicon);
+	}
     }
 }

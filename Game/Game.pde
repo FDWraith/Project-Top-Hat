@@ -7,6 +7,8 @@ private final static String [] Tokens= {"barrow","boot","car","dog","hat","iron"
 public static  ArrayList<String> AvailableTokens = new ArrayList<String>(Arrays.asList(Tokens));
 private static int numPlayer;
 public static String [] TokenList;
+public static String wdr;
+
 
 //Game variables
 private Random r = new Random();
@@ -20,6 +22,7 @@ private static final int[][] locations = { {750,750} , {660,750} , {595,750}, {5
                                            {750,50}, {750,140}, {750,205}, {750,270}, {750,335}, {750,400}, {750,465}, {750,530}, {750,595}, {750,660} };
 
 void setup(){
+  setpath();
   size(800,800);  
   board = loadImage("./images/monopolyBoard.jpg");
   board.resize(800,800);
@@ -43,7 +46,6 @@ void setup(){
     }
     PlayerList[i] = new Player(TokenList[i]);
   }
-  
   
   //Setup tokens for the players;
   PlayerTokens = new ArrayList<PImage>();//store the actual images themselves. Players have the string.
@@ -126,7 +128,7 @@ void draw(){
     }      
 }
 
-boolean overRect(int x, int y, int width, int height)  {
+/*boolean overRect(int x, int y, int width, int height)  {
   if (mouseX >= x && mouseX <= x+width && 
       mouseY >= y && mouseY <= y+height) {
     return true;
@@ -149,7 +151,7 @@ void mousePressed(){
          ButtonList.get(i).trigger(); 
       }
    }
-}
+   }*/
 
 
 
@@ -265,4 +267,7 @@ void SetProperty(){
   SlotsList[39] = new Property(39,"Boardwalk",400,50,200,200,200,"blue",BdWk);  
 }
 
+void setpath(){
+  wdr = sketchPath("");
+}
 //Format: ID,Name,buyPrice,rentPrice,housePrice,hotelPrice,mortgageV, colorG, int[]housePs
