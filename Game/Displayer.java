@@ -24,9 +24,10 @@ public class Displayer extends JFrame implements ActionListener{
 	setResizable(false);
 	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
-	moneyLabel = new JLabel("Money Owned:" x.getMoney()+"");
-	propertydisplay = new JComboBox()
+	moneyLabel = new JLabel("Money Owned:" +x.getMoney()+"");
+	propertydisplay = new JComboBox(getPropertyName());
 
+	p.add(propertydisplay);
 	p.add(moneyLabel);
 
 	add(p);
@@ -35,10 +36,11 @@ public class Displayer extends JFrame implements ActionListener{
     }
 
     public String[] getPropertyName(){
-	String [] save = x.getProperties().length();
-	for(int i = 0; i < x.getProperties().length(), i++){
-	    save[i] = Game.SlotsList[x.getProperties().get(i)].getName();
+	String [] save = new String[x.getProperties().size()];
+	for(int i = 0; i < x.getProperties().size(); i++){
+	    save[i] = (Game.SlotsList[x.getProperties().get(i)]).getName();
 	}
+	return save;
     }
 
     public void actionPerformed(ActionEvent e){

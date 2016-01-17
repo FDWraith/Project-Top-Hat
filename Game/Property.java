@@ -4,7 +4,7 @@ public class Property extends Slot{
     private String colorGroup;
     private boolean owned,mortgaged;
     private int[]housePrices;
-    private Player owner;
+
 
     //Constructors
     
@@ -30,8 +30,6 @@ public class Property extends Slot{
 	housePrices = housePs;
 	houseCount = 0;
 	colorGroup = colorG;
-	owned = false;
-	owner = null;
 	mortgaged = false;
     }
 
@@ -93,23 +91,10 @@ public class Property extends Slot{
 	return owned;
     }
     
-    /**Use this to determine the owner of this property, if there is one.
-     *@return Returns the Player that owns this property.
-     */
-    public Player getOwner(){
-	return owner;
-    }
 
     
     //Mutator
-    
-    /**Change the status of whether the property is owned or unowned 
-     *@param a Player who now owns the property.
-     */
-    public void setOwner(Player enter){
-	owned = true;
-	owner = enter;
-    }
+
 
     //Methods
     
