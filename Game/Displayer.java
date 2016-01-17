@@ -12,8 +12,9 @@ public class Displayer extends JFrame implements ActionListener{
     private JPanel p = new JPanel();
     private JLabel moneyLabel;
     private JComboBox propertydisplay;
+    javax.swing.Timer timer = new javax.swing.Timer(1000,this);
 
-    
+
 
     public Displayer(Player x, int num){
 	super("Player " + num + " Information");
@@ -29,10 +30,12 @@ public class Displayer extends JFrame implements ActionListener{
 
 	p.add(propertydisplay);
 	p.add(moneyLabel);
-
 	add(p);
 	setVisible(true);
-	
+
+
+	timer.setInitialDelay(500);
+	timer.start();
     }
 
     public String[] getPropertyName(){
@@ -44,6 +47,6 @@ public class Displayer extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-	
+	moneyLabel.setText("Money Owned:" + x.getMoney()+"");
     }
 }

@@ -115,6 +115,7 @@ void move(int PlayerID,int dist){
        */
     }
     SlotsList[name.getLocation()].doAction(name);
+    PlayerList[0].changeMoney(100);
 }
   
   
