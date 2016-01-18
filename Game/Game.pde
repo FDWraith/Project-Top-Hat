@@ -98,24 +98,23 @@ void move(int PlayerID,int dist){
        }else{
           name.changeLocation(name.getLocation()+1); 
        }
+
        //animate movement (to be filled in later);
        
-       /*background(board);
-       for(int j =0;j < numPlayer; j++){
-           int locat = PlayerList[j].getLocation();
-           PImage disp = PlayerTokens.get(j);
-           imageMode(CENTER);
-           image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
-       }
-       try{
+       /*try{
          TimeUnit.MILLISECONDS.sleep(100);
        }catch(InterruptedException e){
          println("exception");
-       }
+         }*/
        
        //noLoop();
-       */
+       
     }
+
+
+    redrawboard();
+    println("Player"+ PlayerID+1 + " is that location:" + name.getLocation());
+    
     SlotsList[name.getLocation()].doAction(name);
     //PlayerList[0].changeMoney(100);
 }
@@ -123,19 +122,23 @@ void move(int PlayerID,int dist){
   
   
 void draw(){
-    background(board);
-    for(int i =0;i < numPlayer; i++){
-       int locat = PlayerList[i].getLocation();
-       PImage disp = PlayerTokens.get(i);
-       imageMode(CENTER);
-       image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
-    }
-    move(0,r.nextInt(7));
-    try{
-       TimeUnit.SECONDS.sleep(1);
-    }catch(InterruptedException e){
-       println("exception");
-    }      
+  redrawboard();
+  move(0,r.nextInt(7));
+  try{
+    TimeUnit.SECONDS.sleep(1);
+  }catch(InterruptedException e){
+    println("exception");
+  }      
+}
+
+void redrawboard(){
+  background(board);
+  for(int i =0;i < numPlayer; i++){
+    int locat = PlayerList[i].getLocation();
+    PImage disp = PlayerTokens.get(i);
+    imageMode(CENTER);
+    image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
+  }
 }
 
 /*boolean overRect(int x, int y, int width, int height)  {
