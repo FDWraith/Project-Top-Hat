@@ -131,12 +131,12 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    ArrayList<Integer>PropertyIDs = player.getProperties();
 	    for(int i =0; i<PropertyIDs.size();i++){
 		if(Game.SlotsList[PropertyIDs.get(i)] instanceof Property){
-		    int n = (Property)(Game.SlotsList[PropertyIDs.get(i)]).getHouseCount;
+		    int n = ((Property)(Game.SlotsList[PropertyIDs.get(i)])).getHouseCount();
 		    if(n==5){
 			n=8;
 		    }
+		    count += n;   
 		}
-		count += n;
 	    }
 	    player.changeMoney(-1 * 25 * count);
 	}else if(perform.equals("Pay poor tax of $15")){
