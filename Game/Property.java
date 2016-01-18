@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 public class Property extends Slot{
     private String name;
     private int buyPrice, rentPrice, housePrice, hotelPrice ,mortgageValue, houseCount;
@@ -213,8 +215,13 @@ public class Property extends Slot{
 	    owner.changeMoney(rentPrice);
 	    name.changeMoney(-1*rentPrice);
 	}else if(!owned){
-	    PropertyMenu one = new PropertyMenu(name);
+	    PropertyMenu one = new PropertyMenu(name,this);
 	    one.setVisible(true);
+	    try{
+		TimeUnit.SECONDS.sleep(1);
+	    }catch(InterruptedException e){
+		//do nothing?
+	    }
 	}
     }
 
