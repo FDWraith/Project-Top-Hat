@@ -12,7 +12,7 @@ public static String wdr;
 
 //Game variables
 private Random r = new Random();
-public static Slot[] SlotsList = new Slot[40];
+public Slot[] SlotsList = new Slot[40];
 private static Player[] PlayerList;
 private static ArrayList<PImage> PlayerTokens;
 private static ArrayList<Button> ButtonList;

@@ -28,6 +28,12 @@ public class Railroad extends Slot{
     public int getRentPrice(){
 	return rentPrice;
     }
+    public boolean getOwned(){
+	return owned;
+    }
+    public Player getOwner(){
+	return owner;
+    }
 		 
 
 

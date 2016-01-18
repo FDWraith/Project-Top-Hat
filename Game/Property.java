@@ -92,7 +92,9 @@ public class Property extends Slot{
     public boolean getOwned(){
 	return owned;
     }
-    
+    public int getHouseCount(){
+	return houseCount;
+    }
 
     
     //Mutator
