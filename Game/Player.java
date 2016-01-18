@@ -5,6 +5,7 @@ public class Player{
     private int money;
     private int location;
     private String token;
+    private Displayer displayer;
     private ArrayList<Integer> properties;//int array because properties will be associated with a number.
 
     //Constructors
@@ -21,6 +22,10 @@ public class Player{
     }
 
     //Accessor methods
+
+    public Displayer getDisplayer(){
+	return displayer;
+    }
     
     /**Use this to figure out how much money this player has.
      *@return returns the amount of money.
@@ -51,6 +56,10 @@ public class Player{
     }
     
     //Mutator methods
+
+    public void setDisplayer(Displayer x){
+	displayer =x;
+    }
     
     /**Use this if you want to add or subtract some amount of money from this person's possession.
      *@param money amount

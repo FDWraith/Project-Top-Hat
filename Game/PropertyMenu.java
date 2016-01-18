@@ -87,6 +87,7 @@ public class PropertyMenu extends JFrame implements ActionListener{
 	}else {
 	    terminate();//temp, this will eventually be replaced by an auction.
 	}
+        player.getDisplayer().updateProperty();
     }
 
     public void terminate(){

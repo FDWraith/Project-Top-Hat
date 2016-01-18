@@ -46,7 +46,15 @@ public class Displayer extends JFrame implements ActionListener{
 	return save;
     }
 
+    public void updateProperty(){
+	propertydisplay.removeAllItems();
+	for(String x: getPropertyName()){
+	    propertydisplay.addItem(x);
+	}
+    }
+    
     public void actionPerformed(ActionEvent e){
+	String event = e.getActionCommand();
 	moneyLabel.setText("Money Owned:" + x.getMoney()+"");
     }
 }

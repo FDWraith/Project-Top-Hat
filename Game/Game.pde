@@ -53,6 +53,7 @@ void setup(){
     }
     PlayerList[i] = new Player(TokenList[i]);
     Displayer displays = new Displayer(PlayerList[i],i+1);
+    PlayerList[i].setDisplayer(displays);
   }
   
   //Setup tokens for the players;
