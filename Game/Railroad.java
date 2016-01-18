@@ -82,7 +82,8 @@ public class Railroad extends Slot{
 		}catch(InterruptedException e){
 		    //do nothing
 		}
-	    }while(one.done == false);	    
+	    }while(one.done == false);
+	    one.dispose();
 	}
     }
 }

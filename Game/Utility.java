@@ -66,6 +66,7 @@ public class Utility extends Slot{
 		    //nothing;
 		}
 	    }while(one.done == false);
+	    one.dispose();
 	}
     }
     

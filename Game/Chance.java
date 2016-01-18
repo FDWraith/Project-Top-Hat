@@ -22,6 +22,7 @@ public class Chance extends Slot{
 		//do nothing
 	    }
 	}while(one.done == false);
+	one.dispose();
     }
 
 }

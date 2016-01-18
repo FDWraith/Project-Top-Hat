@@ -82,12 +82,12 @@ public class RailroadMenu extends JFrame implements ActionListener{
 
     public void terminate(){
 	done = true;
-        try{
+        /*try{
 	    TimeUnit.MILLISECONDS.sleep(200);
 	}catch(InterruptedException e){
 	    //nothing
 	}
-	this.dispose();
+	this.dispose();*/
     }
     
 }

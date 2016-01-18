@@ -226,6 +226,7 @@ public class Property extends Slot{
 		    
 		}
 	    }while(one.done == false);
+	    one.dispose();
 	}
     }
 
