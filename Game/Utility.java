@@ -1,5 +1,6 @@
 import java.util.concurrent.TimeUnit;
 import java.util.*;
+
 public class Utility extends Slot{
     private int buyPrice,diceFactor;
     private String name;
