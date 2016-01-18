@@ -1,15 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.TimeUnit;
 
 public class PropertyMenu extends JFrame implements ActionListener{
     private Container pane;
     private Property prop;
     private Player player;
+    public boolean done;
     
     public PropertyMenu(Player entry,Property belong){
 	this.prop = belong;
 	this.player = entry;
+	this.done = false;
 	
 	this.setTitle("What can you do with "+belong.getName());
 	this.setSize(400,400);
@@ -71,24 +74,28 @@ public class PropertyMenu extends JFrame implements ActionListener{
 	if(event.equals("Buy")){
 	    if(player.getMoney()<prop.getBuyPrice()){
 		JOptionPane.showMessageDialog(this,"You do not have enough money to buy this property","WARNING!",JOptionPane.ERROR_MESSAGE);
-		this.dispose();
-		throw(new InterruptedException());
+		terminate();
 	    }else{
 		int reply = JOptionPane.showConfirmDialog(this,"Are you sure you want to buy this property?","CONFRIM YOUR CHOICE!",JOptionPane.YES_NO_OPTION);
 		if(reply == JOptionPane.YES_OPTION){
 		    prop.buyProperty(player);
-		    this.dispose();
-		    throw(new InterruptedException());
+		    terminate();
 		}else{
-		    this.dispose();//temp, this will eventually be replaced by auction.
-		    throw(new InterruptedException());
+		    terminate();//temp, this will eventually be replaced by auction.
 		}
 	    }
 	}else {
-	    this.dispose();//temp, this will eventually be replaced by an auction.
-	    throw(new InterruptedException());
-	    
+	    terminate();//temp, this will eventually be replaced by an auction.
 	}
     }
-    
+
+    public void terminate(){
+	done = true;
+        try{
+	    TimeUnit.MILLISECONDS.sleep(200);
+	}catch(InterruptedException e){
+	    //nothing
+	}
+	this.dispose();
+    }
 }

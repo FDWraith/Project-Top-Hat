@@ -217,11 +217,13 @@ public class Property extends Slot{
 	}else if(!owned){
 	    PropertyMenu one = new PropertyMenu(name,this);
 	    one.setVisible(true);
-	    try{
-		TimeUnit.HOURS.sleep(10);
-	    }catch(InterruptedException e){
-		//resume
-	    }
+	    do{
+		try{
+		    TimeUnit.SECONDS.sleep(1);
+		}catch(InterruptedException e){
+		    
+		}
+	    }while(one.done == false);
 	}
     }
 
