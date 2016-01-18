@@ -212,6 +212,9 @@ public class Property extends Slot{
 	if(owned && owner != null){
 	    owner.changeMoney(rentPrice);
 	    name.changeMoney(-1*rentPrice);
+	}else if(!owned){
+	    PropertyMenu one = new PropertyMenu(name);
+	    one.setVisible(true);
 	}
     }
 
