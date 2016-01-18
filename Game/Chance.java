@@ -8,7 +8,18 @@ public class Chance extends Slot{
 
     //Mandatory Method
     public void doAction(Player name){
-	//Will activate a GUI with random chance card.
+	Random r = new Random();
+	int x = r.nextInt(cards.length);
+        ChanceMenu one = new ChanceMenu(name,cards[x]);
+	one.setVisible(true);
+	
+	do{
+	    try{
+		TimeUnit.SECONDS.sleep(1);
+	    }catch(InterruptedException e){
+		//do nothing
+	    }
+	}while(one.done == false);
     }
 
 }

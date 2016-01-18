@@ -3,19 +3,19 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.concurrent.TimeUnit;
 
-public class PropertyMenu extends JFrame implements ActionListener{
+public class RailroadMenu extends JFrame implements ActionListener{
     private Container pane;
-    private Property prop;
+    private Railroad rail;
     private Player player;
     public boolean done;
     
-    public PropertyMenu(Player entry,Property belong){
-	this.prop = belong;
+    public RailroadMenu(Player entry,Railroad belong){
+	this.rail = belong;
 	this.player = entry;
 	this.done = false;
 	
 	this.setTitle("What can you do with "+belong.getName());
-	this.setSize(400,400);
+	this.setSize(400,200);
 	//this.setLocation(300,300);
 	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
@@ -46,20 +46,11 @@ public class PropertyMenu extends JFrame implements ActionListener{
 	JLabel l2 = new JLabel("Buy Price:"+ belong.getBuyPrice());
 	l2.setAlignmentX(Component.LEFT_ALIGNMENT);
 	JLabel l3 = new JLabel("Rent Price:"+belong.getRentPrice());
-	l3.setAlignmentX(Component.LEFT_ALIGNMENT);
-	JLabel l4 = new JLabel("House Price:"+belong.getHousePrice());
-	l4.setAlignmentX(Component.LEFT_ALIGNMENT);
-	JLabel l5 = new JLabel("Hotel Price:"+belong.getHotelPrice());
-	l5.setAlignmentX(Component.LEFT_ALIGNMENT);
-	JLabel l6 = new JLabel("Mortgage Value:"+belong.getMortgage());
-	l6.setAlignmentX(Component.LEFT_ALIGNMENT);	
+	l3.setAlignmentX(Component.LEFT_ALIGNMENT);	
 
 	p2.add(l1);
 	p2.add(l2);
 	p2.add(l3);
-	p2.add(l4);
-	p2.add(l5);
-	p2.add(l6);
 	
 	JLabel money = new JLabel("Money"+entry.getMoney());
 	money.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -72,13 +63,13 @@ public class PropertyMenu extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
 	if(event.equals("Buy")){
-	    if(player.getMoney()<prop.getBuyPrice()){
-		JOptionPane.showMessageDialog(this,"You do not have enough money to buy this property","WARNING!",JOptionPane.ERROR_MESSAGE);
+	    if(player.getMoney()<rail.getBuyPrice()){
+		JOptionPane.showMessageDialog(this,"You do not have enough money to buy this railroad","WARNING!",JOptionPane.ERROR_MESSAGE);
 		terminate();
 	    }else{
-		int reply = JOptionPane.showConfirmDialog(this,"Are you sure you want to buy this property?","CONFRIM YOUR CHOICE!",JOptionPane.YES_NO_OPTION);
+		int reply = JOptionPane.showConfirmDialog(this,"Are you sure you want to buy this railroad?","CONFRIM YOUR CHOICE!",JOptionPane.YES_NO_OPTION);
 		if(reply == JOptionPane.YES_OPTION){
-		    prop.buyProperty(player);
+		    rail.buyRailroad(player);
 		    terminate();
 		}else{
 		    //terminate();//temp, this will eventually be replaced by auction.
@@ -98,4 +89,5 @@ public class PropertyMenu extends JFrame implements ActionListener{
 	}
 	this.dispose();
     }
+    
 }

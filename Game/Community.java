@@ -1,4 +1,5 @@
 public class Community extends Slot{
+    private String[] commands = {};
     
     public Community(int ID){
 	super(ID);

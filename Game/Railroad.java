@@ -1,4 +1,4 @@
-
+import java.util.concurrent.TimeUnit;
 
 public class Railroad extends Slot{
     private String name;
@@ -15,6 +15,21 @@ public class Railroad extends Slot{
 	owner = null;
 	rentPrice = 25;
     }
+    
+    //Accesors;
+    public String getName(){
+	return name;
+    }
+
+    public int getBuyPrice(){
+	return buyPrice;
+    }
+
+    public int getRentPrice(){
+	return rentPrice;
+    }
+		 
+
 
     public void buyRailroad(Player buyer){
 	buyer.changeMoney(-1*buyPrice);
@@ -51,9 +66,17 @@ public class Railroad extends Slot{
 	    owner.changeMoney(rentPrice);
 	    name.changeMoney(-1*rentPrice);
 	}else if(owned && name.toString().equals(owner.toString())){
-	    //do nothing
+	    //do nothing for now, might add a manager GUI...
 	}else{
-	    //add option to buy this railroad.
+	    RailroadMenu one = new RailroadMenu(name,this);
+	    one.setVisible(true);
+	    do{
+		try{
+		    TimeUnit.SECONDS.sleep(1);
+		}catch(InterruptedException e){
+		    //do nothing
+		}
+	    }while(one.done == false);	    
 	}
     }
 }
