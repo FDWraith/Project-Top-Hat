@@ -218,9 +218,9 @@ public class Property extends Slot{
 	    PropertyMenu one = new PropertyMenu(name,this);
 	    one.setVisible(true);
 	    try{
-		TimeUnit.SECONDS.sleep(1);
+		TimeUnit.HOURS.sleep(10);
 	    }catch(InterruptedException e){
-		//do nothing?
+		//resume
 	    }
 	}
     }

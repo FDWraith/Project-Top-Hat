@@ -40,15 +40,15 @@ public class PropertyMenu extends JFrame implements ActionListener{
 	
 	JLabel l1 = new JLabel(belong.getName());
 	l1.setAlignmentX(Component.CENTER_ALIGNMENT);
-	JLabel l2 = new JLabel(belong.getBuyPrice()+"");
+	JLabel l2 = new JLabel("Buy Price:"+ belong.getBuyPrice());
 	l2.setAlignmentX(Component.LEFT_ALIGNMENT);
-	JLabel l3 = new JLabel(belong.getRentPrice()+"");
+	JLabel l3 = new JLabel("Rent Price:"+belong.getRentPrice());
 	l3.setAlignmentX(Component.LEFT_ALIGNMENT);
-	JLabel l4 = new JLabel(belong.getHousePrice()+"");
+	JLabel l4 = new JLabel("House Price:"+belong.getHousePrice());
 	l4.setAlignmentX(Component.LEFT_ALIGNMENT);
-	JLabel l5 = new JLabel(belong.getHotelPrice()+"");
+	JLabel l5 = new JLabel("Hotel Price:"+belong.getHotelPrice());
 	l5.setAlignmentX(Component.LEFT_ALIGNMENT);
-	JLabel l6 = new JLabel(belong.getMortgage()+"");
+	JLabel l6 = new JLabel("Mortgage Value:"+belong.getMortgage());
 	l6.setAlignmentX(Component.LEFT_ALIGNMENT);	
 
 	p2.add(l1);
@@ -58,7 +58,7 @@ public class PropertyMenu extends JFrame implements ActionListener{
 	p2.add(l5);
 	p2.add(l6);
 	
-	JLabel money = new JLabel(entry.getMoney()+"");
+	JLabel money = new JLabel("Money"+entry.getMoney());
 	money.setAlignmentX(Component.CENTER_ALIGNMENT);
 	
 	pane.add(p2);
@@ -70,18 +70,23 @@ public class PropertyMenu extends JFrame implements ActionListener{
 	String event = e.getActionCommand();
 	if(event.equals("Buy")){
 	    if(player.getMoney()<prop.getBuyPrice()){
-		JOptionPane.showMessageDialog("You do not have enough money to buy this property","WARNING!",JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(this,"You do not have enough money to buy this property","WARNING!",JOptionPane.ERROR_MESSAGE);
 		this.dispose();
+		throw(new InterruptedException());
 	    }else{
-		int reply = JOptionPane.showConfirmDialog("Are you sure you want to buy this property?","CONFRIM YOUR CHOICE!",JOptionPane.YES_NO_OPTION);
-		if(reply = JOptionPane.YES_OPTION){
+		int reply = JOptionPane.showConfirmDialog(this,"Are you sure you want to buy this property?","CONFRIM YOUR CHOICE!",JOptionPane.YES_NO_OPTION);
+		if(reply == JOptionPane.YES_OPTION){
 		    prop.buyProperty(player);
+		    this.dispose();
+		    throw(new InterruptedException());
 		}else{
 		    this.dispose();//temp, this will eventually be replaced by auction.
+		    throw(new InterruptedException());
 		}
 	    }
 	}else {
 	    this.dispose();//temp, this will eventually be replaced by an auction.
+	    throw(new InterruptedException());
 	    
 	}
     }
