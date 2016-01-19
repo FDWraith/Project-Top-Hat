@@ -39,7 +39,7 @@ void setup(){
   
   //print(numPlayer);
   PlayerList = new Player[numPlayer];
-
+  
   //Create the players and request the players to set the tokens
   for(int i = 0; i < PlayerList.length ; i++){
     TokenSet x = new TokenSet(i+1);
@@ -91,7 +91,7 @@ int convertLocationToYCor(int locat){
   
 void move(int PlayerID,int dist){
     Player name = PlayerList[PlayerID];
-    println(dist);
+    //println(dist);
     for(int i =0; i< dist;i++){
        if(name.getLocation()==39){
           name.changeMoney(200);
@@ -99,6 +99,8 @@ void move(int PlayerID,int dist){
        }else{
           name.changeLocation(name.getLocation()+1); 
        }
+
+      
 
        //animate movement (to be filled in later);
        
@@ -111,22 +113,26 @@ void move(int PlayerID,int dist){
        //noLoop();
        
     }
+    println("Player "+ (PlayerID+1) +" moving " +dist +" steps");
     //PlayerList[0].changeMoney(100);
 }
   
   
-private static int currentP = 0;
+private int currentP = 0;
+
 void draw(){
   if(PlayerList[currentP].getPhase() == 0){
     PlayerList[currentP].setPhase(1);
-    move(0,r.nextInt(7));
+    move(currentP,r.nextInt(7));
     redrawboard();
-  }else if (PlayerList[currentP].getPhase() == 1){
+  }
+  else if (PlayerList[currentP].getPhase() == 1){
     PlayerList[currentP].setPhase(2);
     //Kevin, make your animation code here. 
-  }else {
-    PlayerList[currentP].setPhase(3);
-    SlotsList[PlayerList[currentP].getLocation()].doAction(PlayerList[currentP]);    
+  }
+  else{
+    PlayerList[currentP].setPhase(0);
+    SlotsList[PlayerList[currentP].getLocation()].doAction(PlayerList[currentP]);
     currentP+=1;
   }
 

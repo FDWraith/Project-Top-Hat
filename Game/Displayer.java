@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class Displayer extends JFrame implements ActionListener{
+public class Displayer extends JFrame implements ActionListener, ItemListener{
     private int playernum;
     private Player x;
     
@@ -15,6 +15,11 @@ public class Displayer extends JFrame implements ActionListener{
     javax.swing.Timer timer = new javax.swing.Timer(1000,this);
 
 
+    private JLabel pr1 = new JLabel ();
+    private JLabel pr2 = new JLabel ();
+    private JLabel pr3 = new JLabel ();
+    private JLabel pr4 = new JLabel ();
+    private JLabel pr5 = new JLabel ();
 
     public Displayer(Player x, int num){
 	super("Player " + num + " Information");
@@ -27,9 +32,17 @@ public class Displayer extends JFrame implements ActionListener{
 
 	moneyLabel = new JLabel("Money Owned:" +x.getMoney()+"");
 	propertydisplay = new JComboBox(getPropertyName());
+	propertydisplay.addItemListener(this);
 
 	p.add(propertydisplay);
 	p.add(moneyLabel);
+
+	p.add(pr1);
+	p.add(pr2);
+	p.add(pr3);
+	p.add(pr4);
+	p.add(pr5);
+	
 	add(p);
 	setVisible(true);
 
@@ -56,5 +69,19 @@ public class Displayer extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
 	moneyLabel.setText("Money Owned:" + x.getMoney()+"");
+    }
+
+    public void itemStateChanged(ItemEvent e){
+	if(e.getStateChange() == ItemEvent.SELECTED){
+	    Slot pobject;
+	    pobject = Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())];
+	    if(pobject instanceof Property){
+		pr1.setText("Buy Price:" + pobject.getBuyPrice());
+		pr2.setText("Rent Price:" + pobject.getRentPrice());
+		pr3.setText("House Price:" + pobject.getHousePrice());
+		pr4.setText("Hotel Price:" + pobject.getHotelPrice());
+		pr5.setText("Mortgage Value:" + pobject.getMortgage());
+	    }
+	}
     }
 }
