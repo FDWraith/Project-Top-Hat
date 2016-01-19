@@ -23,6 +23,10 @@ public class Player{
 
     //Accessor methods
 
+    public int getPhase(){
+	return currentphase;
+    }
+
     public Displayer getDisplayer(){
 	return displayer;
     }

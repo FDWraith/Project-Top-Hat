@@ -78,6 +78,7 @@ void setup(){
   
   //Setup the Slot Array
   SetProperty();
+  redrawboard();
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
@@ -110,20 +111,31 @@ void move(int PlayerID,int dist){
        //noLoop();
        
     }
-
-
-    redrawboard();
-    println("Player"+ PlayerID+1 + " is that location:" + name.getLocation());
-    
-    SlotsList[name.getLocation()].doAction(name);
     //PlayerList[0].changeMoney(100);
 }
   
   
-  
+private static int currentP = 0;
 void draw(){
-  redrawboard();
-  move(0,r.nextInt(7));
+  if(PlayerList[currentP].getPhase() == 0){
+    PlayerList[currentP].setPhase(1);
+    move(0,r.nextInt(7));
+    redrawboard();
+  }else if (PlayerList[currentP].getPhase() == 1){
+    PlayerList[currentP].setPhase(2);
+    //Kevin, make your animation code here. 
+  }else {
+    PlayerList[currentP].setPhase(3);
+    SlotsList[PlayerList[currentP].getLocation()].doAction(PlayerList[currentP]);    
+    currentP+=1;
+  }
+
+  if(currentP >= PlayerList.length){
+    currentP = 0;
+  }
+  //SlotsList[PlayerList[ID].getLocation()].doAction(PlayerList[ID]);
+  //move(0,r.nextInt(7));  
+  //redrawboard();
   try{
     TimeUnit.SECONDS.sleep(1);
   }catch(InterruptedException e){
