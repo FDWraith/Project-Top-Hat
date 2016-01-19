@@ -14,7 +14,7 @@ public class UtilityMenu extends JFrame implements ActionListener{
 	this.util = belong;
 	done = false;
 
-	this.setTitle("What Do you want to do with "+util.getName());
+	this.setTitle("Player "+(player.getIndex()+1)+", do you want to buy "+util.getName()+"?");
 	this.setSize(400,200);
 	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
@@ -81,12 +81,12 @@ public class UtilityMenu extends JFrame implements ActionListener{
 
     public void terminate(){
 	done = true;
-        /*try{
+        try{
 	    TimeUnit.MILLISECONDS.sleep(200);
 	}catch(InterruptedException e){
 	    //nothing
 	}
-	this.dispose();*/
+	this.dispose();
     }
     
 }

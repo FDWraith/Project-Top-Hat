@@ -51,7 +51,7 @@ void setup(){
         Thread.currentThread().interrupt();
       }
     }
-    PlayerList[i] = new Player(TokenList[i]);
+    PlayerList[i] = new Player(TokenList[i],i);
     Displayer displays = new Displayer(PlayerList[i],i+1);
     PlayerList[i].setDisplayer(displays);
   }
@@ -123,7 +123,7 @@ private int currentP = 0;
 void draw(){
   if(PlayerList[currentP].getPhase() == 0){
     PlayerList[currentP].setPhase(1);
-    move(currentP,r.nextInt(7));
+    move(currentP,(r.nextInt(6)+1));
     redrawboard();
   }
   else if (PlayerList[currentP].getPhase() == 1){

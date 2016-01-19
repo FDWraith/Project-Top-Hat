@@ -13,8 +13,10 @@ public class RailroadMenu extends JFrame implements ActionListener{
 	this.rail = belong;
 	this.player = entry;
 	this.done = false;
+
+	int playNum = player.getIndex()+1;
 	
-	this.setTitle("What can you do with "+belong.getName());
+	this.setTitle("Player "+playNum+", do you want to buy "+belong.getName()+"?");
 	this.setSize(400,200);
 	//this.setLocation(300,300);
 	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -82,12 +84,12 @@ public class RailroadMenu extends JFrame implements ActionListener{
 
     public void terminate(){
 	done = true;
-        /*try{
+        try{
 	    TimeUnit.MILLISECONDS.sleep(200);
 	}catch(InterruptedException e){
 	    //nothing
 	}
-	this.dispose();*/
+	this.dispose();
     }
     
 }

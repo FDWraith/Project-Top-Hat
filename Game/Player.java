@@ -2,7 +2,7 @@ import java.util.*;
 public class Player{
     public static final String[] phases = {"waiting","moving","selection"};
     private int currentphase;
-    private int money;
+    private int money,index;
     private int location;
     private String token;
     private Displayer displayer;
@@ -13,16 +13,21 @@ public class Player{
     /**
      *Default constructor (only constructor). Initializes a player with starting money and intilizies the empty properties list. 
      */
-    public Player(String token){
+    public Player(String token,int ind){
 	currentphase = 0;
 	money = 1500;
 	location = 0;
 	this.token = token;
 	properties = new ArrayList<Integer>();
+	this.index = ind;
     }
 
     //Accessor methods
+    public int getIndex(){
+	return index;
+    }
 
+    
     public int getPhase(){
 	return currentphase;
     }

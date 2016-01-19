@@ -12,7 +12,7 @@ public class Chance extends Slot{
     public void doAction(Player name){
 	Random r = new Random();
 	int x = r.nextInt(cards.length);
-        ChanceMenu one = new ChanceMenu(name,cards[x]);
+        ChanceMenu one = new ChanceMenu(name,cards[4]);
 	one.setVisible(true);
 	
 	do{

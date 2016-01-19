@@ -13,8 +13,10 @@ public class PropertyMenu extends JFrame implements ActionListener{
 	this.prop = belong;
 	this.player = entry;
 	this.done = false;
+
+	int playNum = player.getIndex()+1;
 	
-	this.setTitle("What can you do with "+belong.getName());
+	this.setTitle("Player "+playNum+", do you want to buy "+belong.getName()+"?");
 	this.setSize(400,400);
 	//this.setLocation(300,300);
 	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

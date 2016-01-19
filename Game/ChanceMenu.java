@@ -15,7 +15,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	this.action = action;
 	this.done = false;
 	
-	this.setTitle("You have landed on a Chance Card!");
+	this.setTitle("Player "+(player.getIndex()+1)+", you have landed on a Chance Card!");
 	this.setSize(400,200);
 	//this.setLocation(300,300);
 	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -79,17 +79,17 @@ public class ChanceMenu extends JFrame implements ActionListener{
 		player.changeMoney(-1*sum);
 		Game.SlotsList[player.getLocation()].getOwner().changeMoney(sum);		
 	    }else{
-		/*Uncomment once UtilityMenu is done
-		  UtilityMenu one = new UtilityMenu(player,(Utility)(Game.SlotsList[player.getLocation()]));
-		  one.setVisible(true);
-		  do{
-		  try{
-		  TimeUnit.SECONDS.sleep(1);
-		  }catch(InterruptedException e){
-		  //nothing here
-		  }
-		  }while(one.done == false);
-		*/
+		this.dispose();
+		UtilityMenu one = new UtilityMenu(player,(Utility)(Game.SlotsList[player.getLocation()]));
+		one.setVisible(true);
+		/*do{
+		    try{
+			TimeUnit.SECONDS.sleep(1);
+		    }catch(InterruptedException e){
+			//nothing here
+		    }
+		}while(one.done == false);
+		one.dispose();*/
 	    }
 	}else if(perform.equals("Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank.")){
 	    if(player.getLocation()<=5){
@@ -107,16 +107,21 @@ public class ChanceMenu extends JFrame implements ActionListener{
 		player.changeMoney(-1*sum);
 		Game.SlotsList[player.getLocation()].getOwner().changeMoney(sum);		
 	    }else{
+		this.dispose();
 		RailroadMenu one = new RailroadMenu(player,(Railroad)(Game.SlotsList[player.getLocation()]));
 		one.setVisible(true);
-		do{
+		/*do{
 		    try{
 			TimeUnit.SECONDS.sleep(1);
 		    }catch(InterruptedException e){
-			//nothing here
+			//nothing
 		    }
 		}while(one.done == false);
-		
+		one.dispose();*/
+		//while(one.done == false){
+		    //wait?
+		//}
+		//one.dispose();
 	    }
 	}else if(perform.equals("Bank pays you dividend of $50")){
 	    player.changeMoney(50);
@@ -140,7 +145,9 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    }
 	    player.changeMoney(-1 * 25 * count);
 	}else if(perform.equals("Pay poor tax of $15")){
-	    player.changeMoney(-1 * 15);
+	    player.changeMoney(-1 * 15);    
+	}else if(perform.equals("Take a trip to Reading Railroad")){
+	    player.changeLocation(5);
 	}else if(perform.equals("Take a walk on the Boardwalk - Advance token to BoardWalk")){
 	    player.changeLocation(39);
 	}else if(perform.equals("Your building loan matures - Collect $150")){
