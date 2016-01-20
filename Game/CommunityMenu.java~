@@ -1,0 +1,27 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+public class CommunityMenu extends JFrame implements ActionListener{
+    public boolean done;
+    private Container pane;
+    private Player player;
+    private String action;
+
+    public CommunityMenu(Player entry, String action){
+	this.player = entry;
+	this.action = action;
+	this.done = false;
+	
+	this.setTitle("Player "+(player.getIndex()+1)+", you have landed on Community Chest!");
+	this.setSize(400,200);
+	this.setDefualtCloseOperation(DO_NOTHING_ON_CLOSE);
+	
+	pane = this.setContentPane();
+	pane.setLayout(new BoxLayout(pane,BoxLayout.Y_AXIS));
+
+	JLabel l1 = new JLabel(action);
+	l1.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+}
