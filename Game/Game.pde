@@ -94,24 +94,11 @@ void move(int PlayerID,int dist){
     //println(dist);
     for(int i =0; i< dist;i++){
        if(name.getLocation()==39){
-          name.changeMoney(200);
-          name.changeLocation(0);
+         name.changeMoney(200);
+         name.changeLocation(0);
        }else{
-          name.changeLocation(name.getLocation()+1); 
-       }
-
-      
-
-       //animate movement (to be filled in later);
-       
-       /*try{
-         TimeUnit.MILLISECONDS.sleep(100);
-       }catch(InterruptedException e){
-         println("exception");
-         }*/
-       
-       //noLoop();
-       
+         name.changeLocation(name.getLocation()+1); 
+       }       
     }
     println("Player "+ (PlayerID+1) +" moving " +dist +" steps");
     //PlayerList[0].changeMoney(100);
