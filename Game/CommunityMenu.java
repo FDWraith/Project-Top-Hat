@@ -61,30 +61,47 @@ public class CommunityMenu extends JFrame implements ActionListener{
 	}else if(perform == 5){
 	    player.changeLocation(10);
 	}else if(perform == 6){
-	    for(int i = 0; i < Game.PlayerList.size(); i++){
-		Game.PlayerList.get(i).changeMoney(-1 * 50);
+	    for(int i = 0; i < Game.PlayerList.length; i++){
+		Game.PlayerList[i].changeMoney(-1 * 50);
 	    }
-	    player.changeMoney(50 * Game.PlayerList.size());
+	    player.changeMoney(50 * Game.PlayerList.length);
 	}else if(perform == 7){
-
+	    player.changeMoney(100);
 	}else if(perform == 8){
-
+	    player.changeMoney(20);
 	}else if(perform == 9){
-
+	    for(int i =0; i < Game.PlayerList.length;i++){
+		Game.PlayerList[i].changeMoney(-1 * 10);
+	    }
+	    player.changeMoney(10 * Game.PlayerList.length);
 	}else if(perform == 10){
-
+	    player.changeMoney(100);
 	}else if(perform == 11){
-
+	    player.changeMoney(-1 * 100);
 	}else if(perform == 12){
-
+	    player.changeMoney(-1 * 150);
 	}else if(perform == 13){
-
+	    player.changeMoney(25);
 	}else if(perform == 14){
-
+	    int[]houseCounts = int[player.getProperties().size()];
+	    for(int i = 0; i<player.getProperties().size();i++){
+		if(Game.SlotsList[i] instanceof Property){
+		    houseCounts[i] = (Property)(Game.SlotsList[i]).getHouseCount();
+		}
+	    }
+	    int sum = 0;
+	    for(int i =0; i<houseCounts.length;i++){
+		if(houseCounts[i] == 5){
+		    sum += 115;
+		}else{
+		    sum += houseCounts * 40;
+		}
+	    }
+	    player.changeMoney(-1 * sum);
 	}else if(perform == 15){
-
+	    player.changeMoney(10);
 	}else if(perform == 16){
-
+	    player.changeMoney(100);
 	}else{
 	    //obligatory else, but nothing happens :P   
 	}
