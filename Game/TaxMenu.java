@@ -26,7 +26,7 @@ public class TaxMenu extends JFrame implements ActionListener{
 
 	JLabel l1 = new JLabel(tax.getName());
 	l1.setAlignmentX(Component.CENTER_ALIGNMENT);
-	JLabel l2 = new JLabel("Make your decision about /nhow much you want /nto pay");
+	JLabel l2 = new JLabel("Make your decision about how much you want to pay");
 	l2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 	p1.add(l1);

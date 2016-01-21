@@ -67,3 +67,4 @@ public class TaxDisplay extends JFrame implements ActionListener{
     public void terminate(){
 	this.done = true;
     }
+}

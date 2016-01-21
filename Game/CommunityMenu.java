@@ -13,14 +13,14 @@ public class CommunityMenu extends JFrame implements ActionListener{
     public CommunityMenu(Player entry, String action,int actionID){
 	this.player = entry;
 	this.action = action;
-	this.actionID = actionID
+	this.actionID = actionID;
 	this.done = false;
 	
 	this.setTitle("Player "+(player.getIndex()+1)+", you have landed on Community Chest!");
 	this.setSize(400,200);
-	this.setDefualtCloseOperation(DO_NOTHING_ON_CLOSE);
+	this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	
-	pane = this.setContentPane();
+	pane = this.getContentPane();
 	pane.setLayout(new BoxLayout(pane,BoxLayout.Y_AXIS));
 
 	JLabel l1 = new JLabel(action);
@@ -83,10 +83,10 @@ public class CommunityMenu extends JFrame implements ActionListener{
 	}else if(perform == 13){
 	    player.changeMoney(25);
 	}else if(perform == 14){
-	    int[]houseCounts = int[player.getProperties().size()];
+	    int[]houseCounts = new int[player.getProperties().size()];
 	    for(int i = 0; i<player.getProperties().size();i++){
 		if(Game.SlotsList[i] instanceof Property){
-		    houseCounts[i] = (Property)(Game.SlotsList[i]).getHouseCount();
+		    houseCounts[i] = ((Property)(Game.SlotsList[i])).getHouseCount();
 		}
 	    }
 	    int sum = 0;
@@ -94,7 +94,7 @@ public class CommunityMenu extends JFrame implements ActionListener{
 		if(houseCounts[i] == 5){
 		    sum += 115;
 		}else{
-		    sum += houseCounts * 40;
+		    sum += houseCounts[i] * 40;
 		}
 	    }
 	    player.changeMoney(-1 * sum);

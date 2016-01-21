@@ -14,7 +14,7 @@ public class Tax extends Slot{
 	return payPrice;
     }
     public String getName(){
-	return String;
+	return name;
     }
     
     //Mandatory method

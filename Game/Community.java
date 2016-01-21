@@ -11,8 +11,8 @@ public class Community extends Slot{
     //Mandatory Action
     public void doAction(Player name){
 	Random r = new Random();
-	int x = r.nextInt(cards.length);
-        CommunityMenu one = new CommunityMenu(name,cards[4]);
+	int x = r.nextInt(cards.length);  
+        CommunityMenu one = new CommunityMenu(name,cards[x],x);
 	one.setVisible(true);
 	
 	do{
