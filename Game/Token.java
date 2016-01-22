@@ -1,8 +1,10 @@
+import java.util.*;
+
 public class Token{
   Player player ;
   float[] xy;
 
-  Token(Player p1 ){
+  public Token(Player p1 ){
     player = p1;
     xy = Game.locations[0];
   }
@@ -10,8 +12,6 @@ public class Token{
   
 
   void display(){
-    PImage disp = PlayerTokens.get(player.getIndex());
-    image(disp, xy[0], xy[1]);
   }
 
   void move(){
@@ -20,7 +20,7 @@ public class Token{
         xy[0]= xy[0] - 1;
       }else if(player.getLocation() < 20){
         xy[1] = xy[1] - 1;
-      }else if(player.getLocation( < 30)){
+      }else if(player.getLocation() < 30){
         xy[0] = xy[0] + 1;
       }else{
         xy[1] = xy[1] + 1;
