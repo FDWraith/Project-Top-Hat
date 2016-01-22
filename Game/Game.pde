@@ -88,10 +88,10 @@ void setup(){
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
-int convertLocationToXCor(int locat){
+float convertLocationToXCor(int locat){
    return locations[locat][0];
 }
-int convertLocationToYCor(int locat){
+float convertLocationToYCor(int locat){
    return locations[locat][1]; 
 }
   

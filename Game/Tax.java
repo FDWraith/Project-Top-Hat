@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 public class Tax extends Slot{
     private int payPrice;
     private String name;
@@ -8,15 +10,39 @@ public class Tax extends Slot{
 	payPrice = price;
     }
 
+    public int getPayPrice(){
+	return payPrice;
+    }
+    public String getName(){
+	return name;
+    }
+    
     //Mandatory method
-    public void doAction(Player name){
+    public void doAction(Player entry){
 	if(getLocation()==4){
-	    if(name.getMoney()/10 < payPrice){
-		name.changeMoney(payPrice *-1);
-		return;
-	    }
+	    TaxMenu one = new TaxMenu(entry, this);
+	    one.setVisible(true);
+	    do{
+		try{
+		    TimeUnit.SECONDS.sleep(1);
+		}catch(InterruptedException e){
+		    //nothing
+		}
+	    }while(one.done == false);
+	    one.dispose();
+	}else{
+	    TaxDisplay one = new TaxDisplay(entry, this);
+	    one.setVisible(true);
+	    do{
+		try{
+		    TimeUnit.SECONDS.sleep(1);
+		}catch(InterruptedException e){
+		    //nothing
+		}
+	    }while(one.done == false);
+	    one.dispose();
 	}
-	name.changeMoney(payPrice*-1);
+	
     }
     
 }
