@@ -7,6 +7,7 @@ private final static String [] Tokens= {"barrow","boot","car","dog","hat","iron"
 public static  ArrayList<String> AvailableTokens = new ArrayList<String>(Arrays.asList(Tokens));
 private static int numPlayer;
 public static String [] TokenList;
+private static tpde [] TokenDisplay;
 public static String wdr;
 
 
@@ -79,6 +80,12 @@ void setup(){
   //Setup the Slot Array
   SetProperty();
   redrawboard();
+
+  TokenDisplay = new tpde[PlayerList.length];
+  for(int i = 0; i < PlayerList.length ; i++ ){
+    TokenDisplay[i] = new tpde(PlayerList[i]);
+    TokenDisplay[i].display();
+  }
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
@@ -110,11 +117,15 @@ private int currentP = 0;
 void draw(){
   if(PlayerList[currentP].getPhase() == 0){
     PlayerList[currentP].setPhase(1);
-    move(currentP,(r.nextInt(6)+1));
     redrawboard();
   }
   else if (PlayerList[currentP].getPhase() == 1){
-    PlayerList[currentP].setPhase(2);
+    if(TokenDisplay[currentP].samelocation()){
+      PlayerList[currentP].setPhase(2);
+    }else{
+      TokenDisplay[currentP].move();
+      TokenDisplay[currentP].display();
+    }
     //Kevin, make your animation code here. 
   }
   else{
@@ -138,12 +149,6 @@ void draw(){
 
 void redrawboard(){
   background(board);
-  for(int i =0;i < numPlayer; i++){
-    int locat = PlayerList[i].getLocation();
-    PImage disp = PlayerTokens.get(i);
-    imageMode(CENTER);
-    image(disp, convertLocationToXCor(locat), convertLocationToYCor(locat));
-  }
 }
 
 /*boolean overRect(int x, int y, int width, int height)  {
