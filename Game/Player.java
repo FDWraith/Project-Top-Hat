@@ -7,6 +7,7 @@ public class Player{
     private String token;
     private Displayer displayer;
     private ArrayList<Integer> properties;//int array because properties will be associated with a number.
+    private int jailTime;//when 0, the player can move;
 
     //Constructors
     
@@ -63,6 +64,10 @@ public class Player{
     public int getLocation(){
 	return location;
     }
+
+    public int getJailTime(){
+	return jailTime;
+    }
     
     //Mutator methods
 
@@ -82,6 +87,10 @@ public class Player{
      */
     public void changeLocation(int newL){
 	location = newL;
+    }
+    
+    public void changeJailed(int days){
+	jailTime = days;
     }
 
     /**Use this if you want to add a property to this player's ownership.

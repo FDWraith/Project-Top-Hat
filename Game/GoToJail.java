@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 public class GoToJail extends Slot{
 
     public GoToJail(int ID){
@@ -6,8 +8,16 @@ public class GoToJail extends Slot{
     
     //Mandatory method
     public void doAction(Player name){
-	//Player.setLocation(10);
-	//Player.setJailed(3);
+	JailDisplay one = new JailDisplay(name, this);
+	one.setVisible(true);
+	do{
+	    try{
+		TimeUnit.SECONDS.sleep(1);
+	    }catch(InterruptedException e){
+		//nothing;
+	    }
+	}while(one.done == false);
+	one.dispose();
     }   
     
 }
