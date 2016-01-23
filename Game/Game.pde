@@ -77,15 +77,16 @@ void setup(){
       PlayerTokens.get(i).resize(40,40); 
   }
   
-  //Setup the Slot Array
-  SetProperty();
-  redrawboard();
 
   TokenDisplay = new tpde[PlayerList.length];
   for(int i = 0; i < PlayerList.length ; i++ ){
     TokenDisplay[i] = new tpde(PlayerList[i]);
-    TokenDisplay[i].display();
   }
+
+  //Setup the Slot Array
+  SetProperty();
+  redrawboard();
+
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
@@ -117,6 +118,7 @@ private int currentP = 0;
 void draw(){
   if(PlayerList[currentP].getPhase() == 0){
     PlayerList[currentP].setPhase(1);
+    move(currentP, r.nextInt(7));
     redrawboard();
   }
   else if (PlayerList[currentP].getPhase() == 1){
@@ -124,8 +126,8 @@ void draw(){
       PlayerList[currentP].setPhase(2);
     }else{
       TokenDisplay[currentP].move();
-      TokenDisplay[currentP].display();
     }
+    redrawboard();
     //Kevin, make your animation code here. 
   }
   else{
@@ -149,6 +151,9 @@ void draw(){
 
 void redrawboard(){
   background(board);
+  for(int i = 0; i < TokenDisplay.length ; i++){
+    TokenDisplay[i].display();
+  }
 }
 
 /*boolean overRect(int x, int y, int width, int height)  {
