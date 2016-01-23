@@ -8,6 +8,7 @@ public class Player{
     private Displayer displayer;
     private ArrayList<Integer> properties;//int array because properties will be associated with a number.
     private int jailTime;//when 0, the player can move;
+    private int jailCards;
 
     //Constructors
     
@@ -21,6 +22,8 @@ public class Player{
 	this.token = token;
 	properties = new ArrayList<Integer>();
 	this.index = ind;
+	jailCards = 0;
+	jailTime = 0;
     }
 
     //Accessor methods
@@ -68,6 +71,10 @@ public class Player{
     public int getJailTime(){
 	return jailTime;
     }
+
+    public int getJailCards(){
+	return jailCards;
+    }
     
     //Mutator methods
 
@@ -89,8 +96,12 @@ public class Player{
 	location = newL;
     }
     
-    public void changeJailed(int days){
+    public void changeJailTime(int days){
 	jailTime = days;
+    }
+
+    public void changeJailCard(int count){
+	jailCards += count;
     }
 
     /**Use this if you want to add a property to this player's ownership.

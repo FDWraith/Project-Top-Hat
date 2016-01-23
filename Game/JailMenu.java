@@ -59,8 +59,11 @@ public class JailMenu extends JFrame implements ActionListener{
 	
 	JLabel money = new JLabel("Amount of Money: "+player.getMoney());
 
+	JLabel cards = new JLabel("Number of Cards: "+player.getJailCards());
+	
 	pane.add(p1);
 	pane.add(money);
+	pane.add(cards);
 	pane.add(p2);
     }
 
@@ -71,16 +74,46 @@ public class JailMenu extends JFrame implements ActionListener{
 	    int n1 = r.nextInt(6);
 	    int n2 = r.nextInt(6);
 	    if(n1 == n2){
-		JOptionPane.messageDialog(this,"You have gotten out of jail by rolling doubles","Congratulations", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(this,"You have gotten out of jail by rolling doubles","Congratulations", JOptionPane.INFORMATION_MESSAGE);
 		player.setPhase(1);
 		player.changeJailTime(0);
 		player.changeLocation(player.getLocation()+n1+n2);
-		
+	    }else{
+		//For all the other cases of rolling die.
+		player.changeJailTime(player.getJailTime()-1);//lower one day
+	        if(player.getJailTime() == 0){
+		    //If this is the player's third turn in Jail
+		    JOptionPane.showMessageDialog(this, "This is your third turn in jail. It is time to start heading out! You will still have to pay $50,unfortunately", "Congratulations",JOptionPane.INFORMATION_MESSAGE);
+		    player.changeMoney(-1 * 50);
+		    player.setPhase(1);
+		    player.changeLocation(player.getLocation()+n1+n2);
+		}
 	    }
+	    terminate();//no matter what happens, as soon as player decides to roll, his/her turn is over.
 	}else if(event.equals("Pay")){
-
+	    int res = JOptionPane.showConfirmDialog(this,"Are you sure you want to pay $50 to get out of jail? You currently have $"+player.getMoney(),"CONFIRM YOUR CHOICE!",JOptionPane.YES_NO_OPTION);
+	    if(res == JOptionPane.YES_OPTION){
+		if(player.getMoney()<50){
+		    player.declareBankrupt();
+		}else{
+		    player.changeMoney(-1 * 50);
+		}
+		terminate();
+	    }else{
+	        //don't close anything.
+	    }
+	}else{
+	    if(player.getJailCards() > 0){
+		JOptionPane.showMessageDialog(this,"You are now out of Jail. You have "+(player.getJailCards()-1)+" Get Out Of Jail Free cards left","Alert!",JOptionPane.INFORMATION_MESSAGE);
+		player.changeJailCards(-1);
+		player.changeJailTime(0);
+		//player.changeLocation(10);
+		terminate();//End the player's turn
+	    }else{
+		JOptionPane.showMessageDialog(this,"You don't have any Jail cards available for you to use!","WARNING!",JOptionPane.INFORMATION_MESSAGE);
+		//Nothing is closed.
+	    }
 	}
-	terminate();
     }
 
     public void terminate(){
