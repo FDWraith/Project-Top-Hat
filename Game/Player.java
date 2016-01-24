@@ -149,17 +149,19 @@ public class Player{
     }
 
     public Boolean movetoken(){
+	double meanx = Math.max((Math.abs(Game.locations[location][1] - xy[0]) / 5),1.0);
+	double meany = Math.max(Math.abs((Game.locations[location][1] - xy[1])/5),1.0);
 	if(Arrays.equals(Game.locations[location],xy)){
 	    return false;
 	}else{
 	    if(getLocation() < 10){
-		xy[0]-= ((xy[0] - Game.locations[location][0]) / 10);
+		xy[0]-= 10;
 	    }else if(getLocation() < 20){
-		xy[1] = ((xy[1] - Game.locations[location[1]]) / 10);
+		xy[1] = 10;
 	    }else if(getLocation() < 30){
-		xy[0] = (Game.locations[location][0] - xy[0];
+		xy[0] = 10;
 	    }else{
-		xy[1] = xy[1] + 1;
+		xy[1] = 10;
 	    }
 	    return true;
 	}
