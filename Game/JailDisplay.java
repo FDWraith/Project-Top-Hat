@@ -9,7 +9,6 @@ public class JailDisplay extends JFrame implements ActionListener{
     
     public JailDisplay(Player entry){
 	this.player = entry;
-	this.tax = belong;
 	this.done = false;
 
 	this.setTitle("Player "+(player.getIndex()+1)+", you have to go to Jail.");

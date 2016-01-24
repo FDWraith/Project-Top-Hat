@@ -8,7 +8,7 @@ public class GoToJail extends Slot{
     
     //Mandatory method
     public void doAction(Player name){
-	JailDisplay one = new JailDisplay(name, this);
+	JailDisplay one = new JailDisplay(name);
 	one.setVisible(true);
 	do{
 	    try{

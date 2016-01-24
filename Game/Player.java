@@ -100,7 +100,7 @@ public class Player{
 	jailTime = days;
     }
 
-    public void changeJailCard(int count){
+    public void changeJailCards(int count){
 	jailCards += count;
     }
 
