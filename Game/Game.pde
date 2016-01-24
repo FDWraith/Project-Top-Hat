@@ -16,7 +16,7 @@ public static Slot[] SlotsList = new Slot[40];
 public static Player[] PlayerList;
 private static ArrayList<PImage> PlayerTokens;
 private static ArrayList<Button> ButtonList;
-public static final double[][] locations = { {750,750} , {660,750} , {595,750}, {530,750}, {465,750}, {400,750}, {335,750}, {270,750}, {205,750}, {140,750}, 
+public static final float[][] locations = { {750,750} , {660,750} , {595,750}, {530,750}, {465,750}, {400,750}, {335,750}, {270,750}, {205,750}, {140,750}, 
                                            {50,750}, {50,660}, {50,595}, {50,530}, {50,465}, {50,400}, {50,335}, {50,270}, {50,205}, {50,140},
                                            {50,50}, {140,50}, {205,50}, {270,50}, {335,50}, {400,50}, {465,50}, {530,50}, {595,50}, {660,50},
                                            {750,50}, {750,140}, {750,205}, {750,270}, {750,335}, {750,400}, {750,465}, {750,530}, {750,595}, {750,660} };
@@ -81,10 +81,10 @@ void setup(){
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
-double convertLocationToXCor(int locat){
+float convertLocationToXCor(int locat){
    return locations[locat][0];
 }
-double convertLocationToYCor(int locat){
+float convertLocationToYCor(int locat){
    return locations[locat][1]; 
 }
   
@@ -142,8 +142,8 @@ void draw(){
 void redrawboard(){
   background(board);
   for(int i = 0; i < PlayerList.length ; i++){
-    int x = PlayerList[i].getXY()[0];
-    int y = PlayerList[i].getXY()[1];
+    float x = PlayerList[i].getXY()[0];
+    float y = PlayerList[i].getXY()[1];
     image(PlayerTokens.get(i),x,y);
   }
 }

@@ -9,7 +9,7 @@ public class Player{
     private ArrayList<Integer> properties;//int array because properties will be associated with a number.
     private int jailTime;//when 0, the player can move;
     private int jailCards;
-    private double [] xy = new int[2]; 
+    private float [] xy = new float[2]; 
 
     //Constructors
     
@@ -79,7 +79,7 @@ public class Player{
 	return jailCards;
     }
 
-    public int[] getXY(){
+    public float[] getXY(){
 	return xy;
     }    
     //Mutator methods
@@ -149,19 +149,27 @@ public class Player{
     }
 
     public Boolean movetoken(){
-	double meanx = Math.max((Math.abs(Game.locations[location][1] - xy[0]) / 5),1.0);
-	double meany = Math.max(Math.abs((Game.locations[location][1] - xy[1])/5),1.0);
+	float meanx = Math.max(Math.abs(Game.locations[location][0] - xy[0])/5,20);
+	float meany = Math.max(Math.abs(Game.locations[location][1] - xy[1])/5,20);
+	if(meanx == 20){
+	    meanx = Math.abs(Game.locations[location][0] - xy[0]);	    
+	}
+	if(meany == 20){
+	    meany = Math.abs(Game.locations[location][1] - xy[1]);
+	}
+	
+	
 	if(Arrays.equals(Game.locations[location],xy)){
 	    return false;
 	}else{
-	    if(getLocation() < 10){
-		xy[0]-= 10;
-	    }else if(getLocation() < 20){
-		xy[1] = 10;
-	    }else if(getLocation() < 30){
-		xy[0] = 10;
+	    if((xy[1] == 750) && (xy[0] > 50) ){
+		xy[0]-= meanx;
+	    }else if((xy[0] == 50) && (xy[1] > 50)){
+		xy[1] -= meany;
+	    }else if((xy[0] < 750) && (xy[1] == 50)){
+		xy[0] += meanx;
 	    }else{
-		xy[1] = 10;
+		xy[1] += meany;
 	    }
 	    return true;
 	}
