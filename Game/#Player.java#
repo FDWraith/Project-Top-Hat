@@ -153,13 +153,13 @@ public class Player{
 	    return false;
 	}else{
 	    if(getLocation() < 10){
-		xy[0]-= ((xy[0] - Game.locations[location][0]) / 10);
+		xy[0]-= 10;
 	    }else if(getLocation() < 20){
-		xy[1] = ((xy[1] - Game.locations[location[1]]) / 10);
+		xy[1] = 10;
 	    }else if(getLocation() < 30){
-		xy[0] = (Game.locations[location][0] - xy[0];
+		xy[0] = 10;
 	    }else{
-		xy[1] = xy[1] + 1;
+		xy[1] = 10;
 	    }
 	    return true;
 	}

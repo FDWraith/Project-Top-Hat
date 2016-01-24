@@ -7,7 +7,6 @@ private final static String [] Tokens= {"barrow","boot","car","dog","hat","iron"
 public static  ArrayList<String> AvailableTokens = new ArrayList<String>(Arrays.asList(Tokens));
 private static int numPlayer;
 public static String [] TokenList;
-private static tpde [] TokenDisplay;
 public static String wdr;
 
 
@@ -17,7 +16,7 @@ public static Slot[] SlotsList = new Slot[40];
 public static Player[] PlayerList;
 private static ArrayList<PImage> PlayerTokens;
 private static ArrayList<Button> ButtonList;
-public static final float[][] locations = { {750,750} , {660,750} , {595,750}, {530,750}, {465,750}, {400,750}, {335,750}, {270,750}, {205,750}, {140,750}, 
+public static final double[][] locations = { {750,750} , {660,750} , {595,750}, {530,750}, {465,750}, {400,750}, {335,750}, {270,750}, {205,750}, {140,750}, 
                                            {50,750}, {50,660}, {50,595}, {50,530}, {50,465}, {50,400}, {50,335}, {50,270}, {50,205}, {50,140},
                                            {50,50}, {140,50}, {205,50}, {270,50}, {335,50}, {400,50}, {465,50}, {530,50}, {595,50}, {660,50},
                                            {750,50}, {750,140}, {750,205}, {750,270}, {750,335}, {750,400}, {750,465}, {750,530}, {750,595}, {750,660} };
@@ -76,17 +75,9 @@ void setup(){
   for(int i=0; i<PlayerTokens.size();i++){
       PlayerTokens.get(i).resize(40,40); 
   }
-  
-
-  TokenDisplay = new tpde[PlayerList.length];
-  for(int i = 0; i < PlayerList.length ; i++ ){
-    TokenDisplay[i] = new tpde(PlayerList[i]);
-  }
 
   //Setup the Slot Array
   SetProperty();
-  redrawboard();
-
 }
 
 //conversion for location IDs to x-cor and y-cor with respect to the display
@@ -97,7 +88,7 @@ float convertLocationToYCor(int locat){
    return locations[locat][1]; 
 }
   
-void move(int PlayerID,int dist){
+void change(int PlayerID,int dist){
     Player name = PlayerList[PlayerID];
     //println(dist);
     for(int i =0; i< dist;i++){
@@ -116,23 +107,22 @@ void move(int PlayerID,int dist){
 private int currentP = 0;
 
 void draw(){
-  if(PlayerList[currentP].getPhase() == 0){
-    PlayerList[currentP].setPhase(1);
-    move(currentP, r.nextInt(7));
+  Player CurrentPlayer = PlayerList[currentP];
+  if(CurrentPlayer.getPhase() == 0){
+    CurrentPlayer.setPhase(1);
+    change(currentP, r.nextInt(7));
     redrawboard();
   }
-  else if (PlayerList[currentP].getPhase() == 1){
-    if(TokenDisplay[currentP].samelocation()){
-      PlayerList[currentP].setPhase(2);
-    }else{
-      TokenDisplay[currentP].move();
+  else if (CurrentPlayer.getPhase() == 1){
+    if(CurrentPlayer.movetoken()){
+      redrawboard();
     }
-    redrawboard();
-    //Kevin, make your animation code here. 
-  }
-  else{
-    PlayerList[currentP].setPhase(0);
-    SlotsList[PlayerList[currentP].getLocation()].doAction(PlayerList[currentP]);
+    else{
+      CurrentPlayer.setPhase(2);
+    }
+  }else{
+    CurrentPlayer.setPhase(0);
+    SlotsList[CurrentPlayer.getLocation()].doAction(PlayerList[currentP]);
     currentP+=1;
   }
 
@@ -151,8 +141,10 @@ void draw(){
 
 void redrawboard(){
   background(board);
-  for(int i = 0; i < TokenDisplay.length ; i++){
-    TokenDisplay[i].display();
+  for(int i = 0; i < PlayerList.length ; i++){
+    int x = PlayerList[i].getXY()[0];
+    int y = PlayerList[i].getXY()[1];
+    image(PlayerTokens.get(i),x,y);
   }
 }
 
