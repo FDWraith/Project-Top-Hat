@@ -14,6 +14,10 @@ public class Utility extends Slot{
 	diceFactor = 4;
     }
 
+    public String getName(){
+	return name;
+    }
+    
     public boolean getOwned(){
 	return owned;
     }

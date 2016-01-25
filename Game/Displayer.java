@@ -13,6 +13,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     private JLabel moneyLabel;
     private ImageIcon icon;
     private JLabel timg;
+    private JLabel jcards;
     private JComboBox propertydisplay;
     private JButton mortgage;
     javax.swing.Timer timer = new javax.swing.Timer(1000,this);
@@ -34,15 +35,22 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
 	moneyLabel = new JLabel("Money Owned:" +x.getMoney()+"");
+	jcards = new JLabel("Get out of Jail Cards Owned: " +x.getJailCards());
+	
 	propertydisplay = new JComboBox(getPropertyName());
 	icon = new ImageIcon(Game.wdr + "images/tokens/monopoly_token_"+ x.getToken() + ".png");
 	mortgage = new JButton("Manage Mortgage");
 	mortgage.addActionListener(this);
 	mortgage.setActionCommand("mortgage");
+
+
+	
 	Image img = icon.getImage();
 	Image newimg = img.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
 	ImageIcon newicon = new ImageIcon(newimg);
-	timg = new JLabel(newicon);	
+	timg = new JLabel(newicon);
+
+	
 	propertydisplay.addItemListener(this);
 
 	p.add(timg);
@@ -55,6 +63,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	p.add(pr4);
 	p.add(pr5);
 	p.add(mortgage);
+	p.add(jcards);
 	
 	add(p);
 	setVisible(true);
@@ -82,6 +91,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
 	moneyLabel.setText("Money Owned:" + x.getMoney()+"");
+	jcards.setText("Get out of Jail Cards Owned: " +x.getJailCards());	
 	if(event.equals("mortgage") && (Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())] instanceof Property)){
 	    Slot pobject = Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())];
 	    if(pobject.getMortgage()){
