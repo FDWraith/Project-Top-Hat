@@ -38,7 +38,7 @@ public class JailMenu extends JFrame implements ActionListener{
 	p1.add(l4);
 	
 	JPanel p2 = new JPanel();
-	p2.setLayout(new BoxLayout(p1,BoxLayout.X_AXIS));
+	p2.setLayout(new BoxLayout(p2,BoxLayout.X_AXIS));
 	p2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 	JButton b1 = new JButton("Roll");
@@ -46,8 +46,8 @@ public class JailMenu extends JFrame implements ActionListener{
 	b1.setActionCommand("Roll");
 
 	JButton b2 = new JButton("Pay");
-	b1.addActionListener(this);
-	b1.setActionCommand("Pay");
+	b2.addActionListener(this);
+	b2.setActionCommand("Pay");
 
 	JButton b3 = new JButton("Use Card");
 	b3.addActionListener(this);

@@ -52,6 +52,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	if(perform.equals("Advance to Go (Collect $200)")){
 	    player.changeLocation(0);
 	    player.changeMoney(200);
+	    player.setPhase(1);
 	}else if(perform.equals("Advance to Illinois Ave. - If you pass Go, collect $200")){
 	    if(player.getLocation()>24){
 		player.changeMoney(200);
@@ -64,7 +65,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 		player.changeMoney(200);
 	    }
 	    player.changeLocation(10);
-	    
+	    player.setPhase(1);
 	}else if(perform.equals("Advance to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total of ten times the amount thrown.")){
 	    if(player.getLocation()<=12){
 		player.changeLocation(12);		
@@ -73,6 +74,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    }else{
 		player.changeLocation(12);
 	    }
+	    player.setPhase(1);
 	    if(Game.SlotsList[player.getLocation()].getOwned()){
 		Random r = new Random();
 		int sum = 10 * (r.nextInt(6)+1);
@@ -101,6 +103,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    }else{
 		player.changeLocation(5);
 	    }
+	    player.setPhase(1);
 	    if(Game.SlotsList[player.getLocation()].getOwned()){
 		Random r = new Random();
 		int sum = 10 * (r.nextInt(6)+1);
@@ -126,11 +129,12 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	}else if(perform.equals("Bank pays you dividend of $50")){
 	    player.changeMoney(50);
 	}else if(perform.equals("Get out of Jail Free - This card may be kept until needed, or traded/sold")){
-	    //This will do nothing for now until we can implement it 
+	    player.changeJailCards(1); 
 	}else if(perform.equals("Go Back 3 Spaces")){
 	    player.changeLocation(player.getLocation()-3);
 	}else if(perform.equals("Go to Jail - Go directly to Jail - Do not pass Go, do not collect $200")){
 	    player.changeLocation(10);
+	    player.changeJailTime(3);
 	}else if(perform.equals("Make general repairs on all your property - For each house pay $25 - For each hotel $100")){
 	    int count = 0;
 	    ArrayList<Integer>PropertyIDs = player.getProperties();
@@ -148,8 +152,10 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    player.changeMoney(-1 * 15);    
 	}else if(perform.equals("Take a trip to Reading Railroad")){
 	    player.changeLocation(5);
+	    player.setPhase(1);
 	}else if(perform.equals("Take a walk on the Boardwalk - Advance token to BoardWalk")){
 	    player.changeLocation(39);
+	    player.setPhase(1);
 	}else if(perform.equals("Your building loan matures - Collect $150")){
 	    player.changeMoney(150);
 	}else if(perform.equals("You have won a crossword competition - Collect $100")){

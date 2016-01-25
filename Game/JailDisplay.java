@@ -31,7 +31,7 @@ public class JailDisplay extends JFrame implements ActionListener{
 	p1.add(l2);
 	
 	JPanel p2 = new JPanel();
-	p2.setLayout(new BoxLayout(p1,BoxLayout.X_AXIS));
+	p2.setLayout(new BoxLayout(p2,BoxLayout.X_AXIS));
 	p2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 	JButton b1 = new JButton("OK");
@@ -56,6 +56,7 @@ public class JailDisplay extends JFrame implements ActionListener{
 	if(event.equals("OK")){
 	    player.changeLocation(10);
 	    player.changeJailTime(3);
+	    player.setPhase(1);
 	}
 	terminate();
     }

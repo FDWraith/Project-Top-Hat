@@ -121,10 +121,14 @@ private int currentP = 0;
 void draw(){
   Player CurrentPlayer = PlayerList[currentP];
   if(CurrentPlayer.getPhase() == 0){
-    CurrentPlayer.setPhase(1);
-    roll();
-    change(currentP, Dice1 + Dice2);
-    redrawboard();
+    if(CurrentPlayer.getJailTime() > 0){
+      CurrentPlayer.setPhase(2);
+    }else{
+   	CurrentPlayer.setPhase(1);
+    	roll();
+    	change(currentP, Dice1 + Dice2);
+    	redrawboard();
+    }
   }
   else if (CurrentPlayer.getPhase() == 1){
     if(CurrentPlayer.movetoken()){
@@ -224,7 +228,7 @@ void SetProperty(){
   int [] ConnH = {8,40,100,300,450,600};
   SlotsList[9] = new Property(9,"Connecticut Ave",120,8,50,50,60,"light blue",ConnH);
   
-  SlotsList[10] = new Slot(10);
+  SlotsList[10] = new Jail(10);
   
   int [] StcH = {10,50,150,450,625,750};
   SlotsList[11] = new Property(11,"St. Charles Place",140,10,100,100,70,"pink",StcH);

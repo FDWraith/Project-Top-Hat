@@ -217,10 +217,10 @@ public class Property extends Slot{
      */
     public void doAction(Player name){
 	
-	if(owned && owner != null){
+	if(owned){
 	    owner.changeMoney(rentPrice);
 	    name.changeMoney(-1*rentPrice);
-	}else if(!owned){
+	}else{
 	    PropertyMenu one = new PropertyMenu(name,this);
 	    one.setVisible(true);
 	    do{

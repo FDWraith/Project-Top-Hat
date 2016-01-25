@@ -56,7 +56,7 @@ public class Railroad extends Slot{
      *Also asks all other railroads to adjust their prices as well.//Can't get this to work :(
      */
     public void adjustRentPrice(){
-	if(owner!= null){
+	if(owned){
 	    int count = 0;
 	    for(int i =5;i<40;i+=10){
 		if(owner.getProperties().contains(i)){count++;}
@@ -68,11 +68,10 @@ public class Railroad extends Slot{
     }
     
     public void doAction(Player name){
-	if(owned && !name.toString().equals(owner.toString())){
+	this.adjustRentPrice();
+	if(owned){
 	    owner.changeMoney(rentPrice);
 	    name.changeMoney(-1*rentPrice);
-	}else if(owned && name.toString().equals(owner.toString())){
-	    //do nothing for now, might add a manager GUI...
 	}else{
 	    RailroadMenu one = new RailroadMenu(name,this);
 	    one.setVisible(true);
