@@ -71,13 +71,14 @@ public class JailMenu extends JFrame implements ActionListener{
 	String event = e.getActionCommand();
 	if(event.equals("Roll")){
 	    Random r = new Random();
-	    int n1 = r.nextInt(6);
-	    int n2 = r.nextInt(6);
-	    if(n1 == n2){
+	    int n1 = r.nextInt(6)+1;
+	    int n2 = r.nextInt(6)+1;
+	    if(n2 == n1){
 		JOptionPane.showMessageDialog(this,"You have gotten out of jail by rolling doubles","Congratulations", JOptionPane.INFORMATION_MESSAGE);
 		player.setPhase(1);
 		player.changeJailTime(0);
 		player.changeLocation(player.getLocation()+n1+n2);
+		Game.currentP -= 1;
 	    }else{
 		//For all the other cases of rolling die.
 		player.changeJailTime(player.getJailTime()-1);//lower one day

@@ -128,6 +128,11 @@ public class Player{
 	currentphase = x;
     }
 
+    public void setXY(int x, int y){
+	xy[0] = x;
+	xy[1] = y;
+    }
+
     //Other methods
 
     /**Use this to check if player is bankrupt or not.

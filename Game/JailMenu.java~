@@ -2,13 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class JailDisplay extends JFrame implements ActionListener{
+public class JailMenu extends JFrame implements ActionListener{
     private Player player;
     private Container pane;
     public boolean done;
     
     public JailDisplay(Player entry){
 	this.player = entry;
+	this.tax = belong;
 	this.done = false;
 
 	this.setTitle("Player "+(player.getIndex()+1)+", you have to go to Jail.");
@@ -31,7 +32,7 @@ public class JailDisplay extends JFrame implements ActionListener{
 	p1.add(l2);
 	
 	JPanel p2 = new JPanel();
-	p2.setLayout(new BoxLayout(p2,BoxLayout.X_AXIS));
+	p2.setLayout(new BoxLayout(p1,BoxLayout.X_AXIS));
 	p2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 	JButton b1 = new JButton("OK");
@@ -55,9 +56,7 @@ public class JailDisplay extends JFrame implements ActionListener{
 	String event = e.getActionCommand();
 	if(event.equals("OK")){
 	    player.changeLocation(10);
-	    player.setXY(50,750);
 	    player.changeJailTime(3);
-	    player.setPhase(1);
 	}
 	terminate();
     }
