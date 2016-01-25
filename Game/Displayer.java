@@ -14,6 +14,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     private ImageIcon icon;
     private JLabel timg;
     private JComboBox propertydisplay;
+    private JButton mortgage;
     javax.swing.Timer timer = new javax.swing.Timer(1000,this);
 
 
@@ -34,7 +35,10 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 
 	moneyLabel = new JLabel("Money Owned:" +x.getMoney()+"");
 	propertydisplay = new JComboBox(getPropertyName());
-	icon = new ImageIcon(Game.wdr + "images/tokens/monopoly_token_"+ x.getToken() + ".png");    
+	icon = new ImageIcon(Game.wdr + "images/tokens/monopoly_token_"+ x.getToken() + ".png");
+	mortgage = new JButton("Manage Mortgage");
+	mortgage.addActionListener(this);
+	mortgage.setActionCommand("mortgage");
 	Image img = icon.getImage();
 	Image newimg = img.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
 	ImageIcon newicon = new ImageIcon(newimg);
@@ -50,11 +54,12 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	p.add(pr3);
 	p.add(pr4);
 	p.add(pr5);
+	p.add(mortgage);
 	
 	add(p);
 	setVisible(true);
 
-
+	timer.setActionCommand("timing");
 	timer.setInitialDelay(500);
 	timer.start();
     }
@@ -77,6 +82,9 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
 	moneyLabel.setText("Money Owned:" + x.getMoney()+"");
+	if(event.equals("mortgage") && (Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())] instanceof Property)){
+	 
+	}
     }
 
     public void itemStateChanged(ItemEvent e){
@@ -97,6 +105,13 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 		pr4.setText("");
 		pr5.setText("");
 		    
+	    }else{
+		pobject.adjustDiceFactor();
+		pr1.setText("Buy Price:" + pobject.getBuyPrice());
+		pr2.setText("Dice Factor:" + pobject.getDiceFactor());
+		pr3.setText("");
+		pr4.setText("");
+		pr5.setText("");
 	    }
 		
 	}
