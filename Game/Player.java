@@ -100,6 +100,11 @@ public class Player{
      */
     public void changeLocation(int newL){
 	location = newL;
+<<<<<<< HEAD
+=======
+	//xy[0] = Game.locations[newL][0];
+	//xy[1] = Game.locations[newL][1];
+>>>>>>> 00a8c42b9c9bc5e7511128e5eee068d47ab82ab3
     }
     
     public void changeJailTime(int days){

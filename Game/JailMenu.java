@@ -97,6 +97,7 @@ public class JailMenu extends JFrame implements ActionListener{
 		    player.declareBankrupt();
 		}else{
 		    player.changeMoney(-1 * 50);
+		    player.changeJailTime(0);
 		}
 		terminate();
 	    }else{
