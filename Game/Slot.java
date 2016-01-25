@@ -164,6 +164,19 @@ public class Slot {
     public void endMortgage(){
 
     }
+
+    public void buyRailroad(Player buyer){
+    }
+
+    public void sellRailroad(){
+    }
+
+    /**Accounts for the price doubling effect of owning multiple railroads.
+     *Also asks all other railroads to adjust their prices as well.//Can't get this to work :(
+     */
+    public void adjustRentPrice(){
+	
+    }
     
 
     //Mandatory Method

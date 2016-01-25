@@ -90,7 +90,13 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 		pr4.setText("Hotel Price:" + pobject.getHotelPrice());
 		pr5.setText("Mortgaged:" + pobject.getMortgage());
 	    }else if(pobject instanceof Railroad){
-		
+		pobject.adjustRentPrice();
+		pr1.setText("Buy Price:"+pobject.getBuyPrice());
+		pr2.setText("Rent Price:"+pobject.getRentPrice());
+		pr3.setText("");
+		pr4.setText("");
+		pr5.setText("");
+		    
 	    }
 		
 	}
