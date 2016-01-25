@@ -55,6 +55,7 @@ public class JailDisplay extends JFrame implements ActionListener{
 	String event = e.getActionCommand();
 	if(event.equals("OK")){
 	    player.changeLocation(10);
+	    player.setXY(50,750);
 	    player.changeJailTime(3);
 	    player.setPhase(1);
 	}

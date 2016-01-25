@@ -140,6 +140,7 @@ void draw(){
   }else{
     CurrentPlayer.setPhase(0);
     SlotsList[CurrentPlayer.getLocation()].doAction(PlayerList[currentP]);
+    redrawboard();
     currentP+=1;
   }
 
