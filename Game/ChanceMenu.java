@@ -57,15 +57,19 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    if(player.getLocation()>24){
 		player.changeMoney(200);
 		player.changeLocation(24);
+		player.setPhase(1);
 	    }else{
 		player.changeLocation(24);
+		player.setPhase(1);
 	    }
 	}else if(perform.equals("Advance to St. Charles Place - If you pass Go, collect $200")){
-	    if(player.getLocation()>10){
+	    if(player.getLocation()>11){
 		player.changeMoney(200);
+		player.setPhase(1);
+	    }else{
+		player.changeLocation(11);
+		player.setPhase(1);
 	    }
-	    player.changeLocation(10);
-	    player.setPhase(1);
 	}else if(perform.equals("Advance to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total of ten times the amount thrown.")){
 	    if(player.getLocation()<=12){
 		player.changeLocation(12);		
@@ -132,6 +136,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    player.changeJailCards(1); 
 	}else if(perform.equals("Go Back 3 Spaces")){
 	    player.changeLocation(player.getLocation()-3);
+	    player.setPhase(1);
 	}else if(perform.equals("Go to Jail - Go directly to Jail - Do not pass Go, do not collect $200")){
 	    player.changeLocation(10);
 	    player.changeJailTime(3);
