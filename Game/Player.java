@@ -149,12 +149,12 @@ public class Player{
     }
 
     public Boolean movetoken(){
-	float meanx = Math.max(Math.abs(Game.locations[location][0] - xy[0])/5,20);
-	float meany = Math.max(Math.abs(Game.locations[location][1] - xy[1])/5,20);
-	if(meanx == 20){
+	float meanx = Math.max(Math.abs(Game.locations[location][0] - xy[0])/5,10);
+	float meany = Math.max(Math.abs(Game.locations[location][1] - xy[1])/5,10);
+	if(meanx == 10){
 	    meanx = Math.abs(Game.locations[location][0] - xy[0]);	    
 	}
-	if(meany == 20){
+	if(meany == 10){
 	    meany = Math.abs(Game.locations[location][1] - xy[1]);
 	}
 	

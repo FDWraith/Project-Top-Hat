@@ -8,12 +8,15 @@ public static  ArrayList<String> AvailableTokens = new ArrayList<String>(Arrays.
 private static int numPlayer;
 public static String [] TokenList;
 public static String wdr;
+public int Dice1;
+public int Dice2;
 
 
 //Game variables
 private Random r = new Random();
 public static Slot[] SlotsList = new Slot[40];
 public static Player[] PlayerList;
+private static PImage[] DiceImg = new PImage[6];
 private static ArrayList<PImage> PlayerTokens;
 private static ArrayList<Button> ButtonList;
 public static final float[][] locations = { {750,750} , {660,750} , {595,750}, {530,750}, {465,750}, {400,750}, {335,750}, {270,750}, {205,750}, {140,750}, 
@@ -76,6 +79,11 @@ void setup(){
       PlayerTokens.get(i).resize(40,40); 
   }
 
+  //Setup the images for the dice
+  for(int i = 0; i < DiceImg.length;i++){
+    DiceImg[i] = loadImage("./images/dice/Die_"+(i+1)+".png");
+  }
+
   //Setup the Slot Array
   SetProperty();
 }
@@ -102,7 +110,11 @@ void change(int PlayerID,int dist){
     println("Player "+ (PlayerID+1) +" moving " +dist +" steps");
     //PlayerList[0].changeMoney(100);
 }
-  
+
+void roll(){
+  Dice1 = r.nextInt(6) + 1;
+  Dice2 = r.nextInt(6) + 1;
+}
   
 private int currentP = 0;
 
@@ -110,7 +122,8 @@ void draw(){
   Player CurrentPlayer = PlayerList[currentP];
   if(CurrentPlayer.getPhase() == 0){
     CurrentPlayer.setPhase(1);
-    change(currentP, r.nextInt(7));
+    roll();
+    change(currentP, Dice1 + Dice2);
     redrawboard();
   }
   else if (CurrentPlayer.getPhase() == 1){
@@ -144,6 +157,8 @@ void redrawboard(){
   for(int i = 0; i < PlayerList.length ; i++){
     float x = PlayerList[i].getXY()[0];
     float y = PlayerList[i].getXY()[1];
+    image(DiceImg[Dice1-1],200,200);
+    image(DiceImg[Dice2-1],250,200);    
     image(PlayerTokens.get(i),x,y);
   }
 }
