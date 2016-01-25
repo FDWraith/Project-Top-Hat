@@ -71,7 +71,7 @@ public class UtilityMenu extends JFrame implements ActionListener{
 		    util.buyUtility(player);
 		    terminate();
 		}else{
-		    //terminate();//temp, this will eventually be replaced by auction.
+		    terminate();//temp, this will eventually be replaced by auction.
 		}
 	    }
 	}else {
