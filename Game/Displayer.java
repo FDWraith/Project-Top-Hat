@@ -16,6 +16,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     private JLabel jcards;
     private JComboBox propertydisplay;
     private JButton mortgage;
+    private JButton buyHouse;
     javax.swing.Timer timer = new javax.swing.Timer(1000,this);
 
 
@@ -24,6 +25,12 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     private JLabel pr3 = new JLabel ();
     private JLabel pr4 = new JLabel ();
     private JLabel pr5 = new JLabel ();
+
+    private JPanel p1 = new JPanel();
+    private JPanel p2 = new JPanel();
+    private JPanel p3 = new JPanel();
+    private JPanel p4 = new JPanel();
+    private JPanel p5 = new JPanel();
 
     public Displayer(Player x, int num){
 	super("Player " + num + " Information");
@@ -42,7 +49,10 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	mortgage = new JButton("Manage Mortgage");
 	mortgage.addActionListener(this);
 	mortgage.setActionCommand("mortgage");
-
+	
+        buyHouse = new JButton("Buy a House");
+	buyHouse.addActionListener(this);
+	buyHouse.setActionCommand("buyHouse");
 
 	
 	Image img = icon.getImage();
@@ -53,18 +63,38 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	
 	propertydisplay.addItemListener(this);
 
-	p.add(timg);
-	p.add(propertydisplay);
-	p.add(moneyLabel);
+	p1.setLayout(new BoxLayout(p1,BoxLayout.X_AXIS));
+	p2.setLayout(new BoxLayout(p2,BoxLayout.Y_AXIS));
+	p2.setAlignmentX(Component.RIGHT_ALIGNMENT);
+	p3.setLayout(new BoxLayout(p3,BoxLayout.Y_AXIS));
+	p3.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-	p.add(pr1);
-	p.add(pr2);
-	p.add(pr3);
-	p.add(pr4);
-	p.add(pr5);
-	p.add(mortgage);
-	p.add(jcards);
+	p2.add(timg);
+	p3.add(moneyLabel);
+	p3.add(jcards);
+
+	p1.add(p2);
+	p1.add(p3);
+
+	p4.setLayout(new BoxLayout(p4,BoxLayout.Y_AXIS));
+	p4.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+	p4.add(propertydisplay);
+	p4.add(pr1);
+	p4.add(pr2);
+	p4.add(pr3);
+	p4.add(pr4);
+	p4.add(pr5);
+
+	p5.setLayout(new BoxLayout(p5,BoxLayout.X_AXIS));
 	
+	p5.add(mortgage);
+	p5.add(buyHouse);
+	
+	p.add(p1);
+	p.add(p4);
+	p.add(p5);
+
 	add(p);
 	setVisible(true);
 
@@ -94,7 +124,8 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	jcards.setText("Get out of Jail Cards Owned: " +x.getJailCards());	
 	if(event.equals("mortgage") && (Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())] instanceof Property)){
 	    Slot pobject = Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())];
-	    if(pobject.getMortgage()){
+	    if(po
+bject.getMortgage()){
 		if(JOptionPane.showConfirmDialog(null,"Would you like to unmortgage your property for $" + pobject.getMortgageV()*1.10, "Mortgage Choice",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
 		    pobject.endMortgage();
 		}else{
@@ -107,6 +138,14 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 		    
 		}
 		
+	    }
+	    //WIP Code!
+	}else if(event.equals("buyHouse")){
+	    Slot pobject = Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())];
+	    if(pobject instanceof Property){
+		
+	    }else{
+		JOptionPane.showMessageDialog(this, "This is not a property you can buy houses on.", "WARNING!", JOptionPane.INFORMATION_MESSAGE);
 	    }
 	}
     }
