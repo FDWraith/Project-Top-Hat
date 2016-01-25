@@ -83,7 +83,21 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	String event = e.getActionCommand();
 	moneyLabel.setText("Money Owned:" + x.getMoney()+"");
 	if(event.equals("mortgage") && (Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())] instanceof Property)){
-	 
+	    Slot pobject = Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())];
+	    if(pobject.getMortgage()){
+		if(JOptionPane.showConfirmDialog(null,"Would you like to unmortgage your property for $" + pobject.getMortgageV()*1.10, "Mortgage Choice",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+		    pobject.endMortgage();
+		}else{
+		    
+		}
+	    }else{
+		if(JOptionPane.showConfirmDialog(null,"Would you like to mortgage your property for $" + pobject.getMortgageV(), "Mortgage Choice",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+		    pobject.mortgageProperty();
+		}else{
+		    
+		}
+		
+	    }
 	}
     }
 

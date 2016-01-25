@@ -67,6 +67,9 @@ public class Slot {
     public boolean getMortgage(){
 	return false;
     }
+    public int getMortgageV(){
+	return 0;
+    }    
 
     /**Use this to figure out which colorGroup that this property belongs to.
      *@return a String that represents the colorGroup.

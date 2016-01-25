@@ -196,8 +196,10 @@ public class Property extends Slot{
 	while(houseCount > 0){
 	    sellHouse();
 	}
+	owner.changeMoney(mortgageValue);
 	rentPrice = 0;
 	mortgaged = true;
+	owner.getDisplayer().updateProperty();
     }
 
     /**If a player wants to get rid of the mortgage, he/she has to pay the mortgage value plus 10% interest. 
