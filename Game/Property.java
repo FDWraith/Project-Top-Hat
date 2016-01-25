@@ -79,6 +79,10 @@ public class Property extends Slot{
 	return mortgaged;
     }
 
+    public int getMortgageV(){
+	return mortgageValue;
+    }
+
     /**Use this to figure out which colorGroup that this property belongs to.
      *@return a String that represents the colorGroup.
      */

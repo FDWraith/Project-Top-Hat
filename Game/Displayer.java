@@ -11,6 +11,8 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     
     private JPanel p = new JPanel();
     private JLabel moneyLabel;
+    private ImageIcon icon;
+    private JLabel timg;
     private JComboBox propertydisplay;
     javax.swing.Timer timer = new javax.swing.Timer(1000,this);
 
@@ -32,8 +34,14 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 
 	moneyLabel = new JLabel("Money Owned:" +x.getMoney()+"");
 	propertydisplay = new JComboBox(getPropertyName());
+	icon = new ImageIcon(Game.wdr + "images/tokens/monopoly_token_"+ x.getToken() + ".png");    
+	Image img = icon.getImage();
+	Image newimg = img.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
+	ImageIcon newicon = new ImageIcon(newimg);
+	timg = new JLabel(newicon);	
 	propertydisplay.addItemListener(this);
 
+	p.add(timg);
 	p.add(propertydisplay);
 	p.add(moneyLabel);
 
@@ -80,8 +88,11 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 		pr2.setText("Rent Price:" + pobject.getRentPrice());
 		pr3.setText("House Price:" + pobject.getHousePrice());
 		pr4.setText("Hotel Price:" + pobject.getHotelPrice());
-		pr5.setText("Mortgage Value:" + pobject.getMortgage());
+		pr5.setText("Mortgaged:" + pobject.getMortgage());
+	    }else if(pobject instanceof Railroad){
+		
 	    }
+		
 	}
     }
 }
