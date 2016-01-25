@@ -116,11 +116,7 @@ void roll(){
   Dice2 = r.nextInt(6) + 1;
 }
   
-<<<<<<< HEAD
-public int currentP = 0;
-=======
 public static int currentP = 0;
->>>>>>> 67c7d93f12904c3d4ca7dacd41dd644e628d3dc4
 
 void draw(){
   Player CurrentPlayer = PlayerList[currentP];
