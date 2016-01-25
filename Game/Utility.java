@@ -47,11 +47,13 @@ public class Utility extends Slot{
 	owned = true;
 	owner = buyer;
 	adjustDiceFactor();
+	owner.addProperty(getLocation());
     }
         
     //Mandatory method
     public void doAction(Player name){
 	if(owned){
+	    adjustDiceFactor();
 	    Random r = new Random();
 	    int sum = diceFactor * (r.nextInt(6)+1);
 	    name.changeMoney(-1 * sum);

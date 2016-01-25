@@ -177,6 +177,17 @@ public class Slot {
     public void adjustRentPrice(){
 	
     }
+
+    public int getDiceFactor(){
+	return 0;
+    }
+    
+    public void adjustDiceFactor(){
+    }
+    
+    public void buyUtility(Player buyer){
+
+    }
     
 
     //Mandatory Method
