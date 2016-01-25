@@ -104,6 +104,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 		player.changeLocation(5);
 	    }
 	    player.setPhase(1);
+	    Game.currentP -= 1;
 	    if(Game.SlotsList[player.getLocation()].getOwned()){
 		Random r = new Random();
 		int sum = 10 * (r.nextInt(6)+1);
