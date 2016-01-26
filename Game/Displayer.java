@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import java.util.concurrent.TimeUnit;
 
 public class Displayer extends JFrame implements ActionListener, ItemListener{
     private int playernum;
@@ -141,12 +142,16 @@ bject.getMortgage()){
 	    }
 	    //WIP Code!
 	}else if(event.equals("buyHouse")){
-	    Slot pobject = Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())];
-	    if(pobject instanceof Property){
-		
-	    }else{
-		JOptionPane.showMessageDialog(this, "This is not a property you can buy houses on.", "WARNING!", JOptionPane.INFORMATION_MESSAGE);
-	    }
+	    HouseMenu one = new HouseMenu(x,"buy")//pass along the player and what sort of thing the player wants to be doing
+		one.setVisible(true);
+	    do{
+		try{
+		    TimeUnit.SECONDS.sleep(1);
+		}catch(InterruptedException e){
+		    //nothing
+		}
+	    }while(one.done == false);
+	    one.dispose();
 	}
     }
 

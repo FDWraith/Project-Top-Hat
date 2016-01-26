@@ -1,4 +1,5 @@
 import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
 
 public class Property extends Slot{
     private String name;
@@ -6,8 +7,8 @@ public class Property extends Slot{
     private String colorGroup;
     private boolean owned,mortgaged;
     private int[]housePrices;
-
-
+    private boolean monopolized;
+    
     //Constructors
     
     /**Use this to create a Property. There is no default constructor.
@@ -106,11 +107,16 @@ public class Property extends Slot{
 
     //Methods
     
-    /**Change the rentPrice based on number of houses.
-     *@param how many houses the property possesses (a hotel is 5 houses).
-     */
-    private void changeRentPrice(int count){
-	rentPrice = housePrices[count];
+    private void adjustRentPrice(){
+	if(houseCount == 0){
+	    if(monopolized){
+		rentPrice = 2 * housePrices[0];
+	    }else{ 
+		rentPrice = housePrices[0];
+	    }
+	}else{
+	    rentPrice = housePrices[houseCount]
+	}
     }
     
     /**A player may buy a house to put on this property. The rentPrice and houseCount will be changed and up to four houses are allowed.
@@ -122,7 +128,7 @@ public class Property extends Slot{
 	else{
 	    owner.changeMoney(-1*housePrice);
 	    houseCount += 1;
-	    changeRentPrice(houseCount);
+	    adjustRentPrice();
 	}
     }
     
@@ -132,7 +138,7 @@ public class Property extends Slot{
 	if(houseCount == 4){
 	    owner.changeMoney(-1*housePrice);
 	    houseCount += 1;
-	    changeRentPrice(houseCount);
+	    adjustRentPrice();
 	}else{
 	    return;
 	}
@@ -148,15 +154,25 @@ public class Property extends Slot{
 	owner.changeMoney(-1 * this.buyPrice);
     }
 
-    /**If this property has no houses and a player has a monopoly of a colorGroup that matches this one, then the rentPrice is doubled.
-     *@param String of the colorGroup.
+    /**Consistently check if the owner has a monopoly that includes this property.
      */
-    public void monopolizeProperty(String color){
-	if(houseCount == 0 && color.equals(colorGroup)){
-	    rentPrice = rentPrice * 2;
-	}else{
-	    return;
+    public void monopolizeProperty(){
+        String[]colors = {"brown","light blue","pink","orange","red","yellow","green","blue"};
+	int[][]propSlots = { {2,4,4}, {6,8,9},{11,13,14},{16,18,19},{21,23,24},{26,27,29}, {31,32,34},{37,39,39}};
+	int index = Arrays.binarySearch(colors,this.colorGroup);
+	//Checker algorithm for counting properties that belong to cGroup
+	int count = 0;
+	for(int i =0;i<3;i++){
+	    if(owner.getProperties().contains(propSlots[index][i])){
+		count++;
+	    }
 	}
+	if(count == 3){
+	    this.monopolized = true;//set monopoly to be true
+	}
+
+	//adjusting RentPrice.
+	adjustRentPrice();
     }
 
     /**Use this when the property has to be reset (different from being sold).
@@ -173,7 +189,7 @@ public class Property extends Slot{
      */
     public void sellHouse(){
 	houseCount -= 1;
-	changeRentPrice(houseCount);
+	adjustRentPrice();
 	//monopolizeProperty()  <-- This should be here, but I don't know how to determine if there is a monopoly...
 	owner.changeMoney( housePrice / 2);//int division is fine since houses cannot cost an odd number of dollars
     }
@@ -220,6 +236,7 @@ public class Property extends Slot{
     public void doAction(Player name){
 	
 	if(owned){
+	    monopolizeProperty();//run this everytime
 	    owner.changeMoney(rentPrice);
 	    name.changeMoney(-1*rentPrice);
 	}else{
