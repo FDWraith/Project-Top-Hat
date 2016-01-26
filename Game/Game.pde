@@ -120,6 +120,12 @@ public static int currentP = 0;
 
 void draw(){
   Player CurrentPlayer = PlayerList[currentP];
+  if(gameover()){
+    testSize(32);
+    text("Game Over, Click anywhere to exit",10,60);
+    fill(0,102,153,51);
+    loop();
+  }
   if(CurrentPlayer.getPhase() == 0){
     if(CurrentPlayer.getJailTime() > 0){
       CurrentPlayer.setPhase(2);
@@ -166,6 +172,15 @@ void redrawboard(){
     image(DiceImg[Dice2-1],250,200);    
     image(PlayerTokens.get(i),x,y);
   }
+}
+
+Boolean gameover(){
+  for(int i = 0; i < PlayerList.length; i++){
+    if(PlayerList[i].checkBankruptcy() && (PlayerList[i].getProperties().size() == 0)){
+      return true
+    }
+  }
+  return false;
 }
 
 /*boolean overRect(int x, int y, int width, int height)  {
