@@ -11,8 +11,8 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
     private int houseCounts;
     private int hotelCounts;
     private Property propSelected;
-    private Property[]monopoly;
-    private String[]monoPropNames;
+    private Property[]monopoly,property;
+    private String[]monoPropNames,propertyNames;
     private String operation;
 
     //JFrame things
@@ -32,6 +32,8 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	this.operation = op;
 	this.monopoly = updateMonopoly();
 	this.monoPropNames = getMonoPropNames();
+	this.property = updateProperty();
+	this.propertyNames = getPropertyNames();
 	
 	this.setTitle("Player "+(player.getIndex()+1)+" welcome to Property Management!");
         this.setSize(400,400);
@@ -43,6 +45,8 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	if(operation.equals("buy") && monopoly.length == 0){
 	    JOptionPane.showMessageDialog(null,"You do not have a monopoly, and thereby cannot build houses.","Warning",JOptionPane.INFORMATION_MESSAGE);
 	    this.terminate();
+	}else if(operation.equals("sell") && property.length == 0){
+	    JOptionPane.showMessageDialog(null,"You do not have any houses or hotels that you can sell.","Warning",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 
@@ -64,7 +68,8 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	    c1 = new JComboBox(monoPropNames);
 	    propSelected = monopoly[0];
 	}else if(op.equals("sell")){
-	    //fill in later...
+	    c1 = new JComboBox(propertyNames);
+	    propSelected = property[0];
 	}else{
 	    c1 = new JComboBox();
 	}
@@ -96,7 +101,11 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	    }
 	    b1.setActionCommand("Build");
 	}else if(op.equals("sell")){
-	    b1 = new JButton("Sell House");
+	    if(propSelected.getHouseCount() == 5){
+		b1 = new JButton("Sell Hotel");
+	    }else{
+		b1 = new JButton("Sell House");
+	    }
 	    b1.setActionCommand("Sell");
 	}else{
 	    b1 = new JButton();
@@ -157,7 +166,27 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 		}
 	    }
 	}else if(event.equals("Sell")){
-	    //things happen.
+	    Property choice = property[c1.getSelectedIndex()];
+	    if(choice.getHouseCount()==0){
+		JOptionPane.showMessageDialog(null,"You cannot sell anything on this property","Sold out",JOptionPane.INFORMATION_MESSAGE);
+		this.terminate();
+	    }else if(choice.getHouseCount()==5){
+		int res = JOptionPane.showConfirmDialog(null,"Are you sure you want to sell a hotel on "+choice.getName()+"?","Confirm your choice",JOptionPane.YES_NO_OPTION);
+		if(res == JOptionPane.YES_OPTION){
+		    choice.sellHouse();
+		    this.terminate();
+		}else{
+		    //do nothing.
+		}
+	    }else{
+		int res = JOptionPane.showConfirmDialog(null,"Are you sure you want to build a house on "+choice.getName()+"?","Confirm your choice",JOptionPane.YES_NO_OPTION);
+		if(res == JOptionPane.YES_OPTION){
+		    choice.buyHouse();
+		    this.terminate();
+		}else{
+		    //do nothing.
+		}
+	    }
 	}
     }
 
@@ -165,6 +194,7 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	if(e.getStateChange() == ItemEvent.SELECTED){
 	    if(operation.equals("buy")){
 		Property choice = monopoly[c1.getSelectedIndex()];
+		propSelected = choice;
 		pp1.setText("House Price: "+choice.getHousePrice());
 		pp2.setText("Hotel Price: "+choice.getHotelPrice());
 		pp3.setText("Current House Count: "+choice.getHouseCount());
@@ -219,5 +249,24 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
     
     public void terminate(){
 	this.done = true;
+    }
+
+    public Property[] updateProperty(){
+	ArrayList<Property>props = new ArrayList<Property>();
+	for(int i=0;i<player.getProperties().size();i++){
+	    if(( (Property)(Game.SlotsList[player.getProperties().get(i)]) ).getHouseCount() > 0){
+		props.add((Property)(Game.SlotsList[player.getProperties().get(i)]));
+	    }
+	}
+	Property[]exit = new Property[props.size()];
+	return props.toArray(exit);
+    }
+
+    public String[] getPropertyNames(){
+	String[]exit = new String[property.length];
+	for(int i =0; i<property.length;i++){
+	    exit[i] = property[i].getName();
+	}
+	return exit;
     }
 }

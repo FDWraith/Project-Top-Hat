@@ -201,7 +201,7 @@ public class Property extends Slot{
     public void sellHouse(){
 	houseCount -= 1;
 	adjustRentPrice();
-	//monopolizeProperty()  <-- This should be here, but I don't know how to determine if there is a monopoly...
+	monopolizeProperty() // <-- This should be here, but I don't know how to determine if there is a monopoly...
 	owner.changeMoney( housePrice / 2);//int division is fine since houses cannot cost an odd number of dollars
     }
 
