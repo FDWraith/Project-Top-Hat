@@ -17,7 +17,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     private JLabel jcards;
     private JComboBox propertydisplay;
     private JButton mortgage;
-    private JButton buyHouse;
+    private JButton buyHouse,sellHouse;
     javax.swing.Timer timer = new javax.swing.Timer(1000,this);
 
 
@@ -55,6 +55,10 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	buyHouse.addActionListener(this);
 	buyHouse.setActionCommand("buyHouse");
 
+	sellHouse = new JButton("Sell a House");
+	sellHouse.addActionListener(this);
+	sellHouse.setActionCommand("sellHouse");
+	
 	
 	Image img = icon.getImage();
 	Image newimg = img.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
@@ -87,10 +91,11 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	p4.add(pr4);
 	p4.add(pr5);
 
-	p5.setLayout(new BoxLayout(p5,BoxLayout.X_AXIS));
-	
+	p5.setLayout(new BoxLayout(p5,BoxLayout.X_AXIS));	
 
+	p5.add(mortgage);
 	p5.add(buyHouse);
+	p5.add(sellHouse);
 	
 	p.add(p1);
 	p.add(p4);
@@ -143,6 +148,17 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	}else if(event.equals("buyHouse")){
 	    HouseMenu one = new HouseMenu(x,"buy");//pass along the player and what sort of thing the player wants to be doing
 		one.setVisible(true);
+	    do{
+		try{
+		    TimeUnit.SECONDS.sleep(1);
+		}catch(InterruptedException a){
+		    //nothing
+		}
+	    }while(one.done == false);
+	    one.dispose();
+	}else if(event.equals("sellHouse")){
+	    HouseMenu one = new HouseMenu(x,"sell");
+	    one.setVisible(true);
 	    do{
 		try{
 		    TimeUnit.SECONDS.sleep(1);
