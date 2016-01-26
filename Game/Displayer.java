@@ -89,7 +89,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 
 	p5.setLayout(new BoxLayout(p5,BoxLayout.X_AXIS));
 	
-	p5.add(mortgage);
+
 	p5.add(buyHouse);
 	
 	p.add(p1);
@@ -156,6 +156,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 
     public void itemStateChanged(ItemEvent e){
 	if(e.getStateChange() == ItemEvent.SELECTED){
+	    p5.add(mortgage);
 	    Slot pobject;
 	    pobject = Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())];
 	    if(pobject instanceof Property){

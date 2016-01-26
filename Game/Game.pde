@@ -10,6 +10,7 @@ public static String [] TokenList;
 public static String wdr;
 public int Dice1;
 public int Dice2;
+private static Boolean Gameover = false;
 
 
 //Game variables
@@ -120,12 +121,7 @@ public static int currentP = 0;
 
 void draw(){
   Player CurrentPlayer = PlayerList[currentP];
-  if(gameover()){
-    textSize(32);
-    text("Game Over, Click anywhere to exit",10,60);
-    fill(0,102,153,51);
-    loop();
-  }
+  CurrentPlayer.changeMoney(-1600);
   if(CurrentPlayer.getPhase() == 0){
     if(CurrentPlayer.getJailTime() > 0){
       CurrentPlayer.setPhase(2);
@@ -172,16 +168,28 @@ void redrawboard(){
     image(DiceImg[Dice2-1],250,200);    
     image(PlayerTokens.get(i),x,y);
   }
+  if(gameover()){
+    textSize(32);
+    text("Game Over, Click anywhere to exit",30,180);
+    fill(0,102,153,51);
+    Gameover = true;
+    noLoop();
+  }
 }
 
 Boolean gameover(){
   for(int i = 0; i < PlayerList.length; i++){
-    if(PlayerList[i].checkBankruptcy() && (PlayerList[i].getProperties().size() == 0)){
-      return true;
-    }
+    return (PlayerList[i].checkBankruptcy() && (PlayerList[i].getProperties().size() == 0));
   }
   return false;
 }
+
+void mouseClicked(){
+  if(Gameover){
+    exit();
+  }
+}
+
 
 /*boolean overRect(int x, int y, int width, int height)  {
   if (mouseX >= x && mouseX <= x+width && 

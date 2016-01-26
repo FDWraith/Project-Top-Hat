@@ -147,7 +147,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    Game.currentP-=1;
 	}else if(perform.equals("Go to Jail - Go directly to Jail - Do not pass Go, do not collect $200")){
 	    player.changeLocation(10);
-	    player.setXY[50,750];
+	    player.setXY(50,750);
 	    player.changeJailTime(3);
 	}else if(perform.equals("Make general repairs on all your property - For each house pay $25 - For each hotel $100")){
 	    int count = 0;
