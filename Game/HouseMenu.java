@@ -10,7 +10,7 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
     private int houseCounts;
     private Property propSelected;
     private Property[]monopoly;
-    
+    private String[]monoPropNames;
     
     public HouseMenu(Player entry,String op){
 	this.player = entry;
@@ -29,18 +29,20 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	JLabel l1;
 	if(op.equals("buy")){
 	    monopoly = updateMonopoly();
+	    monoPropNames = getMonoPropNames();
 	    l1 = new JLabel("Properties you can build houses on:");
 	}else if(op.equals("sell")){
 	    l1 = new JLabel("All your Properties that have houses");
 	}
-
 	
 	JComboBox c1;
 	if(op.equals("buy")){
-	    c1 = new JComboBox(monoplizedProperties());
-	    propSelected = monopoly[0];
+	    c1 = new JComboBox(monoPropNames);
+	    propSelected = monoPropNames[0];
+	}else if(op.equals("sell")){
+	    //fill in later...
 	}
-	c1.setItemListener(this);
+	c1.addItemListener(this);
 
 	JPanel p2 = new JPanel();
 	
@@ -51,15 +53,23 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	    }else{
 		b1 = new JButton("Build House");
 	    }
+	    b1.addActionCommand("Build");
 	}else if(op.equals("sell")){
 	    b1 = new JButton("Sell House");
+	    b1.addActionCommand("Sell");
 	}
+	b1.addActionListener(this);
 	
 	JButton b2 = new JButton("Quit");
+	b2.addActionListener(this);
+	b2.setActionCommand("Quit");
     }
     
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
+	if(event.equals("Quit")){
+	    
+	}
     }
 
     public void itemStateChanged(ItemEvent e){
@@ -85,7 +95,17 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 		props.add(player.getProperties().get(i));
 	    }
 	}
-	return (Property[])(prop.toArray());
+        Property[]exit = new Property[props.size()];
+	return props.toArray(exit);
     }
+
+    public String[] getMonoPropNames(){
+	String[]exit = new String[monopoly.length];
+	for(int i; i<monopoly.length;i++){
+	    exit[i] = monopoly[i].getName();
+	}
+	return exit;
+    }
+    
     
 }
