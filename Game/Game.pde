@@ -178,7 +178,7 @@ void redrawboard(){
 
 Boolean gameover(){
   for(int i = 0; i < PlayerList.length; i++){
-    return (PlayerList[i].checkBankruptcy() && (PlayerList[i].getProperties().size() == 0));
+    return (PlayerList[i].checkBankruptcy() && (PlayerList[i].getPropertyNum() == 0));
   }
   return false;
 }

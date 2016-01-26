@@ -50,6 +50,7 @@ public class CommunityMenu extends JFrame implements ActionListener{
 		player.changeMoney(200);
 	    }
 	    player.changeLocation(0);
+	    player.setXY(750,750);
 	}else if(perform == 1){
 	    player.changeMoney(200);
 	}else if(perform == 2){
@@ -60,6 +61,8 @@ public class CommunityMenu extends JFrame implements ActionListener{
 	    //get out of jail free
 	}else if(perform == 5){
 	    player.changeLocation(10);
+	    player.setXY(50,750);
+	    player.changeJailTime(3);
 	}else if(perform == 6){
 	    for(int i = 0; i < Game.PlayerList.length; i++){
 		Game.PlayerList[i].changeMoney(-1 * 50);

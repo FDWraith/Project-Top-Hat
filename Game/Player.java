@@ -79,6 +79,16 @@ public class Player{
 	return jailCards;
     }
 
+    public int getPropertyNum(){
+	int save = 0;
+	for(int i = 0; i < properties.size() ; i++){
+	    if(Game.SlotsList[properties.get(i)] instanceof Property){
+		save += 1;
+	    }
+	}
+	return save;
+    }
+
     public float[] getXY(){
 	return xy;
     }    
