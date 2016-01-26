@@ -69,3 +69,8 @@
     -Buying and Selling houses on properties (Kevin)
     -Implementing an end Game scenario (Sam)
     -Fixing minor bugs dispersed throughout code
+
+
+    #Countless bug fixes involving movement
+    #Fixes various communitity results
+    #Fixed various indexoutofbounds errors that doesn't affect anything

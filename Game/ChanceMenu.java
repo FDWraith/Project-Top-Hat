@@ -52,8 +52,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	if(perform.equals("Advance to Go (Collect $200)")){
 	    player.changeLocation(0);
 	    player.changeMoney(200);
-	    player.setPhase(1);
-	    Game.currentP-=1;
+	    player.setXY(750,750);
 	}else if(perform.equals("Advance to Illinois Ave. - If you pass Go, collect $200")){
 	    if(player.getLocation()>24){
 		player.changeMoney(200);
