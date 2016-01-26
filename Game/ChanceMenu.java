@@ -143,8 +143,7 @@ public class ChanceMenu extends JFrame implements ActionListener{
 	    player.changeJailCards(1); 
 	}else if(perform.equals("Go Back 3 Spaces")){
 	    player.changeLocation(player.getLocation()-3);
-	    player.setPhase(1);
-	    Game.currentP-=1;
+	    player.setXY(Game.locations[player.getLocation()-3][0],Game.locations[player.getLocation()-3][1]);
 	}else if(perform.equals("Go to Jail - Go directly to Jail - Do not pass Go, do not collect $200")){
 	    player.changeLocation(10);
 	    player.setXY(50,750);

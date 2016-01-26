@@ -121,7 +121,6 @@ public static int currentP = 0;
 
 void draw(){
   Player CurrentPlayer = PlayerList[currentP];
-  CurrentPlayer.changeMoney(-1600);
   if(CurrentPlayer.getPhase() == 0){
     if(CurrentPlayer.getJailTime() > 0){
       CurrentPlayer.setPhase(2);

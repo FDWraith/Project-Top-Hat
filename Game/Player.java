@@ -128,7 +128,7 @@ public class Player{
 	currentphase = x;
     }
 
-    public void setXY(int x, int y){
+    public void setXY(float x, float y){
 	xy[0] = x;
 	xy[1] = y;
     }
