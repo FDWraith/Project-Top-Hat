@@ -100,12 +100,19 @@ public class Property extends Slot{
     public int getHouseCount(){
 	return houseCount;
     }
+    public boolean getMonopolized(){
+	return monopolized;
+    }
 
     
     //Mutator
 
 
     //Methods
+    public void changeMonopolized(boolean enter){
+	monopolized = enter;
+    }
+
     
     private void adjustRentPrice(){
 	if(houseCount == 0){
@@ -152,6 +159,7 @@ public class Property extends Slot{
 	owned = true;
 	owner.addProperty(this.getLocation());
 	owner.changeMoney(-1 * this.buyPrice);
+	monopolizeProperty();
     }
 
     /**Consistently check if the owner has a monopoly that includes this property.
@@ -168,7 +176,10 @@ public class Property extends Slot{
 	    }
 	}
 	if(count == 3){
-	    this.monopolized = true;//set monopoly to be true
+	    this.monopolized = true;//set monopoly of this to be true
+	    for(int i =0;i<3;i++){
+		((Property)(Game.SlotsList[propSlots[index][i]])).changeMonoplized(true);
+	    }
 	}
 
 	//adjusting RentPrice.

@@ -9,6 +9,8 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
     public boolean done;
     private int houseCounts;
     private Property propSelected;
+    private Property[]monopoly;
+    
     
     public HouseMenu(Player entry,String op){
 	this.player = entry;
@@ -26,13 +28,18 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 
 	JLabel l1;
 	if(op.equals("buy")){
+	    monopoly = updateMonopoly();
 	    l1 = new JLabel("Properties you can build houses on:");
 	}else if(op.equals("sell")){
 	    l1 = new JLabel("All your Properties that have houses");
 	}
 
 	
-	JComboBox c1 = new JComboBox();
+	JComboBox c1;
+	if(op.equals("buy")){
+	    c1 = new JComboBox(monoplizedProperties());
+	    propSelected = monopoly[0];
+	}
 	c1.setItemListener(this);
 
 	JPanel p2 = new JPanel();
@@ -44,9 +51,11 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	    }else{
 		b1 = new JButton("Build House");
 	    }
+	}else if(op.equals("sell")){
+	    b1 = new JButton("Sell House");
 	}
 	
-	JButton b2 = new JButton();
+	JButton b2 = new JButton("Quit");
     }
     
     public void actionPerformed(ActionEvent e){
@@ -63,9 +72,20 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	int count = 0;
 	for(int i =0; i<Game.SlotsList.length;i++){
 	    if(Game.SlotsList[i] instanceof Property){
-		((Property)(Game.SlotsList[i])).getHouseCount();
+		count += ((Property)(Game.SlotsList[i])).getHouseCount();
 	    }
 	}
+	return count;
+    }
+
+    public Property[] updateMonopoly(){
+        ArrayList<Property>props = new ArrayList<Property>();
+	for(int i =0; i<player.getProperties().size();i++){
+	    if(player.getProperties().get(i).getMonopolized()){
+		props.add(player.getProperties().get(i));
+	    }
+	}
+	return (Property[])(prop.toArray());
     }
     
 }
