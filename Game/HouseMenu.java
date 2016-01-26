@@ -45,8 +45,11 @@ public class HouseMenu extends JFrame implements ActionListener,ItemListener{
 	if(operation.equals("buy") && monopoly.length == 0){
 	    JOptionPane.showMessageDialog(null,"You do not have a monopoly, and thereby cannot build houses.","Warning",JOptionPane.INFORMATION_MESSAGE);
 	    this.terminate();
+	    this.dispose();
 	}else if(operation.equals("sell") && property.length == 0){
 	    JOptionPane.showMessageDialog(null,"You do not have any houses or hotels that you can sell.","Warning",JOptionPane.INFORMATION_MESSAGE);
+	    this.terminate();
+	    this.dispose();
 	}
 
 

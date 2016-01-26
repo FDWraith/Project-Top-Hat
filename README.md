@@ -63,4 +63,9 @@
     -Solved Jail bug due to move animation (Kevin)
     -Various bug fixes involving utilities and chance
     -Compelted implementation of Mortgage (Sam)
- 
+#Jan 25, 2016 log
+   # What we managed today:
+    -Monopolized properties (Kevin)
+    -Buying and Selling houses on properties (Kevin)
+    -Implementing an end Game scenario (Sam)
+    -Fixing minor bugs dispersed throughout code

@@ -1,5 +1,6 @@
 import java.util.concurrent.TimeUnit;
 import java.util.Arrays;
+import java.util.*;
 
 public class Property extends Slot{
     private String name;
@@ -165,9 +166,10 @@ public class Property extends Slot{
     /**Consistently check if the owner has a monopoly that includes this property.
      */
     public void monopolizeProperty(){
-        String[]colors = {"brown","light blue","pink","orange","red","yellow","green","blue"};
+	String[]clr = {"brown","light blue","pink","orange","red","yellow","green","blue"};
+        ArrayList<String> colors = new ArrayList<String>(clr);
 	int[][]propSlots = { {2,4,4}, {6,8,9},{11,13,14},{16,18,19},{21,23,24},{26,27,29}, {31,32,34},{37,39,39}};
-	int index = Arrays.binarySearch(colors,this.colorGroup);
+	int index = colors.indexOf(this.colorGroup);
 	//Checker algorithm for counting properties that belong to cGroup
 	int count = 0;
 	for(int i =0;i<3;i++){

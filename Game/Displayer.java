@@ -17,7 +17,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
     private JLabel jcards;
     private JComboBox propertydisplay;
     private JButton mortgage;
-    private JButton buyHouse,sellHouse;
+    private JButton buyHouse,sellHouse,sellProperty;
     javax.swing.Timer timer = new javax.swing.Timer(1000,this);
 
 
@@ -58,7 +58,10 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	sellHouse = new JButton("Sell a House");
 	sellHouse.addActionListener(this);
 	sellHouse.setActionCommand("sellHouse");
-	
+
+	sellProperty = new JButton("Sell this Property");
+	sellProperty.addActionListener(this);
+	sellProperty.setActionCommand("sellProperty");
 	
 	Image img = icon.getImage();
 	Image newimg = img.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
@@ -167,6 +170,14 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 		}
 	    }while(one.done == false);
 	    one.dispose();
+	}else{
+	    Property choice =(Property)(Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())]);
+	    int res = JOptionPane.showConfirmDialog(null,"Are you sure you want to sell this property, along with any houses and hotels?","Confirm your choice",JOptionPane.YES_NO_OPTION);
+	    if(res == JOptionPane.YES_OPTION){
+		choice.sellProperty();
+	    }else{
+		//nothing
+	    }
 	}
     }
 
