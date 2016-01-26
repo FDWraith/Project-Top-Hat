@@ -121,7 +121,7 @@ public static int currentP = 0;
 void draw(){
   Player CurrentPlayer = PlayerList[currentP];
   if(gameover()){
-    testSize(32);
+    textSize(32);
     text("Game Over, Click anywhere to exit",10,60);
     fill(0,102,153,51);
     loop();
@@ -177,7 +177,7 @@ void redrawboard(){
 Boolean gameover(){
   for(int i = 0; i < PlayerList.length; i++){
     if(PlayerList[i].checkBankruptcy() && (PlayerList[i].getProperties().size() == 0)){
-      return true
+      return true;
     }
   }
   return false;
