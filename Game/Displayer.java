@@ -146,7 +146,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	    do{
 		try{
 		    TimeUnit.SECONDS.sleep(1);
-		}catch(InterruptedException e){
+		}catch(InterruptedException a){
 		    //nothing
 		}
 	    }while(one.done == false);
@@ -159,6 +159,7 @@ public class Displayer extends JFrame implements ActionListener, ItemListener{
 	    Slot pobject;
 	    pobject = Game.SlotsList[x.getProperties().get(propertydisplay.getSelectedIndex())];
 	    if(pobject instanceof Property){
+		((Property)(pobject)).monopolizeProperty(); 
 		pr1.setText("Buy Price:" + pobject.getBuyPrice());
 		pr2.setText("Rent Price:" + pobject.getRentPrice());
 		pr3.setText("House Price:" + pobject.getHousePrice());

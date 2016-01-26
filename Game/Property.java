@@ -6,7 +6,7 @@ public class Property extends Slot{
     private int buyPrice, rentPrice, housePrice, hotelPrice ,mortgageValue, houseCount;
     private String colorGroup;
     private boolean owned,mortgaged;
-    private int[]housePrices;
+    public int[]housePrices;
     private boolean monopolized;
     
     //Constructors
@@ -114,7 +114,7 @@ public class Property extends Slot{
     }
 
     
-    private void adjustRentPrice(){
+    public void adjustRentPrice(){
 	if(houseCount == 0){
 	    if(monopolized){
 		rentPrice = 2 * housePrices[0];
@@ -122,7 +122,7 @@ public class Property extends Slot{
 		rentPrice = housePrices[0];
 	    }
 	}else{
-	    rentPrice = housePrices[houseCount]
+	    rentPrice = housePrices[houseCount];
 	}
     }
     
@@ -133,7 +133,7 @@ public class Property extends Slot{
 	    return;
 	}
 	else{
-	    owner.changeMoney(-1*housePrice);
+	    owner.changeMoney(-1*hotelPrice);
 	    houseCount += 1;
 	    adjustRentPrice();
 	}
@@ -178,7 +178,7 @@ public class Property extends Slot{
 	if(count == 3){
 	    this.monopolized = true;//set monopoly of this to be true
 	    for(int i =0;i<3;i++){
-		((Property)(Game.SlotsList[propSlots[index][i]])).changeMonoplized(true);
+		((Property)(Game.SlotsList[propSlots[index][i]])).changeMonopolized(true);
 	    }
 	}
 
